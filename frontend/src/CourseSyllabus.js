@@ -133,3 +133,4 @@ export default class CourseSyllabus extends React.Component {
     }
 
 }
+

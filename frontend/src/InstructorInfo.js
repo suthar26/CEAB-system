@@ -28,10 +28,9 @@ export default class InstructorInfo extends React.Component {
         //pass this.state variables to App.js or do something with them
         //console.log(this.state)
     };
-
     render() {
         return (
-            <form>
+            <form style={divStyle}>
                 <label for="familyName">Family Name:</label>
                 <input name="familyName" placeholder='Family Name' value={this.state.familyName} onChange={e => this.change(e)} />&nbsp;&nbsp;
                 <label for="firstName">First Name:</label>
@@ -331,4 +330,9 @@ export default class InstructorInfo extends React.Component {
         )
     }
 
+
+
 }
+
+        const divStyle = {
+        padding: '20px'};
