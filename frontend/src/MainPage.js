@@ -54,7 +54,7 @@ export default class MainPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div class="container" >
                 <h1>Course Syllabus</h1>
                 <input id="searchSyllabus" placeholder="Course ID" type="text" />
                 <button onClick={() => this.loadSyllabus(document.getElementById("searchSyllabus").value)}>Load Course</button>

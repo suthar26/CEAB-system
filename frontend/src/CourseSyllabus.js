@@ -33,7 +33,7 @@ export default class CourseSyllabus extends React.Component {
 
     render() {
         return (
-            <form style={{backgroundColor: "#778899"}} autocomplete="on" onSubmit={this.handleSubmit}>
+            <form class="container" autocomplete="on" onSubmit={this.handleSubmit}>
                 <div class="container-fluid">
                     <div class="form-group" style={{float: "left"}}>
                         <label for="courseName">Course Name</label>

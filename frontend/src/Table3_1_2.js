@@ -41,7 +41,7 @@ export default class Table3_1_2 extends React.Component {
 
     render() {
         return (
-            <form style={{ backgroundColor: "#778899" }} autocomplete="on" onSubmit={this.handleSubmit}>
+            <form style={{ backgroundColor: "#778899" }} class="container" autocomplete="on" onSubmit={this.handleSubmit}>
                 <div class="form-group">
                     <h2 style={{ marginLeft: "10px" }}>Table 3.1.2</h2>
                     <p style={{ marginLeft: "10px" }}>Enter the course codes in the text boxes for the respective places, add a "," to seperate multiple courses for the same graduate attribute and relative level.</p>
