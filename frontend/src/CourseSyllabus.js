@@ -1,15 +1,19 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class CourseSyllabus extends React.Component {
-    state = {
-        courseName: '',
+    constructor(props) {
+        super(props);
+        this.state = {courseName: '',
         courseDescription: '',
         graduateAttributesUsed: '',
         instructorName: '',
         courseHours: '',
         courseCode: '',
         tutHours: '',
-        labHours: '',
+        labHours: '',}
+        this.handleChange = this.change.bind(this);
+        this.handleSubmit = this.onSubmit.bind(this);
     }
 
     //gets the values entered by user and set it state variables above
@@ -20,14 +24,16 @@ export default class CourseSyllabus extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        //pass this.state variables to App.js or do something with them
-        //console.log(this.state)
+        axios.post('/api/submitInstructor', {
+            courses: this.state
+        }).then(alert("Saved"));
+        window.location.reload();
 
     };
 
     render() {
         return (
-            <form style={{backgroundColor: "#778899"}} autocomplete="on">
+            <form style={{backgroundColor: "#778899"}} autocomplete="on" onSubmit={this.handleSubmit}>
                 <div class="container-fluid">
                     <div class="form-group" style={{float: "left"}}>
                         <label for="courseName">Course Name</label>
@@ -127,7 +133,7 @@ export default class CourseSyllabus extends React.Component {
                       </table>
                 </div>
                 <br />
-                <button type="submit" class="btn btn-primary" onClick={e => this.onSubmit(e)}>Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         )
     }

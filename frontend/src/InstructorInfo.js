@@ -1,8 +1,10 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class InstructorInfo extends React.Component {
-    state = {
-        familyName: '',
+    constructor(props) {
+        super(props);
+        this.state = {familyName: '',
         firstName: '',
         acadRank: '',
         hireDate: '',
@@ -14,7 +16,9 @@ export default class InstructorInfo extends React.Component {
         awardingCA: '',
         hqpSupervised: '',
         yearsNonAcademicExp: '',
-        typeNonAcademicExp: '',
+        typeNonAcademicExp: '',}
+        this.handleChange = this.change.bind(this);
+        this.handleSubmit = this.onSubmit.bind(this);
     }
 
     //gets the values entered by user and set it state variables above
@@ -25,12 +29,14 @@ export default class InstructorInfo extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        //pass this.state variables to App.js or do something with them
-        //console.log(this.state)
+        axios.post('/api/submitInstructor', {
+            courses: this.state
+        }).then(alert("Saved"));
+        window.location.reload();
     };
     render() {
         return (
-            <form style={divStyle}>
+            <form style={divStyle}  onSubmit={this.handleSubmit}>
                 <label for="familyName">Family Name:</label>
                 <input name="familyName" placeholder='Family Name' value={this.state.familyName} onChange={e => this.change(e)} />&nbsp;&nbsp;
                 <label for="firstName">First Name:</label>
@@ -325,7 +331,7 @@ export default class InstructorInfo extends React.Component {
                 </fieldset>
                 <br/>
                 <br/>
-                <button onClick={e => this.onSubmit(e)}>Submit</button>
+                <button type="submit">Submit</button>
             </form>
         )
     }
