@@ -3,7 +3,6 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
-// import InputGroup from 'react-bootstrap/InputGroup';
 
 
 export default class MainPage extends React.Component {
