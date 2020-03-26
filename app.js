@@ -1,41 +1,45 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const mongoose = require('mongoose');
+const express = require('express');
+var cors = require('cors');
+const bodyParser = require('body-parser');
+const Data = require('./data');
+const axios = require('axios');
+const API_PORT = process.env.PORT || 3001;
+const app = express();
+app.use(cors());
+app.use(bodyParser());
+const router = express.Router();
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const path = require("path");
 
-var app = express();
+//connects mongo db
+mongoose
+  .connect('mongodb://kunj:kunj123@ds041188.mlab.com:41188/heroku_k6t11mxt', { useNewUrlParser: true })
+  .catch(e => {
+    console.error('Connection error', e.message)
+  })
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+let db = mongoose.connection;
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+module.exports = db
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+db.once('open', () => console.log('connected to the database'));
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+// checks if connection with the database is successful
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+
+
+// append /api for our http requests
+app.use('/api', router);
+
+
+//have the server connect the client
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
+// launch our backend into a port
+app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
