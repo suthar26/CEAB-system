@@ -1,4 +1,6 @@
 body {
+  height: 100%;
+  background-color: dimgray;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -15,8 +17,10 @@ code {
 
 .body {
   background-color: dimgray;
+  height: 100%;
 }
 
 .container {
   background-color: #778899;
+  padding-bottom: 50px;
 }
