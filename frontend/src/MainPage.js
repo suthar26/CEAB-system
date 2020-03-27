@@ -22,64 +22,51 @@ export default class MainPage extends React.Component {
 
     loadSyllabus = () => {
         console.log(this.state.courseID);
-        if (this.state.courseID != null) {
+        if (this.state.courseID != '') {
             fetch('/api/loadSyllabus')
                 .then((data) => data.json())
                 .then((res) => this.props.changeData(res.data))
                 .then(this.props.changeTab('CourseSyllabus'))
                 .then(console.log(this.props.getData));
         }
-        else {
-            this.props.changeData(null)
-            this.props.changeTab('CourseSyllabus')
-        }
-
     };
 
     loadCourse = () => {
         console.log(this.state.courseCode);
-        if (this.state.courseCode != null) {
+        if (this.state.courseCode != '') {
             fetch('/api/loadCourse')
                 .then((data) => data.json())
                 .then((res) => this.props.changeData(res.data))
                 .then(console.log(this.props.getData));
         }
-        else {
-            this.props.changeData(null)
-        }
-
     };
 
     loadTable = (search) => {
-        if (search != null) {
+        if (search != '') {
             fetch('/api/loadTable')
                 .then((data) => data.json())
                 .then((res) => this.props.changeData(res.data))
                 .then(this.props.changeTab('Table3_1_2'))
                 .then(console.log(this.props.getData));
         }
-        else {
-            this.props.changeData(null)
-            this.props.changeTab('Table3_1_2')
-        }
-
     };
 
     loadInstructor = () => {
         console.log(this.state.instructorDetails);
-        if (this.state.instructorDetails != null) {
+        if (this.state.instructorDetails != '') {
             fetch('/api/loadInstructor')
                 .then((data) => data.json())
                 .then((res) => this.props.changeData(res.data))
                 .then(this.props.changeTab('InstructorInfo'))
                 .then(console.log(this.props.getData));
         }
-        else {
-            this.props.changeData(null)
-            this.props.changeTab('InstructorInfo')
-        }
 
     };
+
+    newPage = (tabName) => {
+        this.props.changeData(null);
+        this.props.changeTab(tabName);
+    }
 
     render() {
         return (
@@ -95,7 +82,7 @@ export default class MainPage extends React.Component {
                     />
                     <InputGroup.Append>
                         <Button variant="primary" onClick={() => this.loadSyllabus()}>Load Course</Button>
-                        <Button variant="primary" onClick={() => this.loadSyllabus()}>New Course</Button>
+                        <Button variant="primary" onClick={() => this.newPage('CourseSyllabus')}>New Course</Button>
                     </InputGroup.Append>
                 </InputGroup>
 
@@ -103,7 +90,7 @@ export default class MainPage extends React.Component {
                 <InputGroup>
                     <InputGroup.Append>
                         <Button variant="primary" onClick={() => this.loadTable('Table3_1_2')}>Load Course</Button>
-                        <Button variant="primary" onClick={() => this.loadTable(null)}>New Course</Button>
+                        <Button variant="primary" onClick={() => this.newPage('Table3_1_2')}>New Course</Button>
                     </InputGroup.Append>
                 </InputGroup>
 
@@ -119,7 +106,7 @@ export default class MainPage extends React.Component {
                     />
                     <InputGroup.Append>
                         <Button variant="primary" onClick={() => this.loadInstructor()}>Load Course</Button>
-                        <Button variant="primary" onClick={() => this.loadInstructor()}>New Course</Button>
+                        <Button variant="primary" onClick={() => this.newPage('InstructorInfo')}>New Course</Button>
                     </InputGroup.Append>
                 </InputGroup>
 
