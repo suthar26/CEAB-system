@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import FormControl from 'react-bootstrap/FormControl';
+
 
 export default class CourseSyllabus extends React.Component {
     constructor(props) {
@@ -24,6 +26,7 @@ export default class CourseSyllabus extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
+        console.log(this.state.courseName)
         axios.post('/api/submitInstructor', {
             courses: this.state
         }).then(alert("Saved"));
@@ -36,12 +39,19 @@ export default class CourseSyllabus extends React.Component {
             <form class="container" autocomplete="on" onSubmit={this.handleSubmit}>
                 <div class="container-fluid">
                     <div class="form-group" style={{float: "left"}}>
-                        <label for="courseName">Course Name</label>
-                        <input name="courseName" type="text" id="courseName" placeholder='Course Name' class="form-control" value={this.state.courseName} onChange={e => this.change(e)} />
+                        <label for="courseName">Course Name </label>
+                        <FormControl
+                        name="courseName"
+                        onChange={this.change}
+                        placeholder="Course ID"
+                        aria-label="Course ID"
+                        aria-describedby="basic-addon2"
+                    />
+                        {/* <input name="courseName" type="text" id="courseName" placeholder='Course Name' class="form-control" value={this.state.courseName} onChange={e => this.change()} /> */}
                     </div>
                     <div class="form-group" style={{float: "left",marginLeft: "10px"}}>
                         <label for="courseCode">Course Code</label>
-                        <input name="courseCode" type="text" id="courseCode" placeholder='Course Code' class="form-control" value={this.state.courseCode} onChange={e => this.change(e)} />
+                        <input name="courseCode" type="text" id="courseCode" placeholder='Course Code' class="form-control" value={this.state.courseCode} onChange={e => this.change()} />
                     </div>
                     <div class="form-group" style={{float: "left",marginLeft: "10px"}}>
                         <label for="InstructorName">Instructor Name</label>
