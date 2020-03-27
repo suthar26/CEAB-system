@@ -6,6 +6,7 @@ import CourseSyllabus from './CourseSyllabus';
 import InstructorInfo from './InstructorInfo';
 import Table3_1_2 from './Table3_1_2';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ContinuousImprovment from './ContinuousImprovment';
 
 class App extends Component {
 
@@ -39,6 +40,7 @@ class App extends Component {
         {tab === 'CourseSyllabus' && < CourseSyllabus style={divStyle} getData={this.getData} />}
         {tab === 'Table3_1_2' && <  Table3_1_2 style={divStyle}/>}
         {tab === 'InstructorInfo' && <  InstructorInfo style={divStyle}/>}
+        {tab === 'ContinuousImprovment' && < ContinuousImprovment style={divStyle} getData={this.getData} />}
       </div>
     );
   }
