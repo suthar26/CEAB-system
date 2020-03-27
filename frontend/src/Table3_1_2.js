@@ -4,7 +4,44 @@ import axios from 'axios';
 export default class Table3_1_2 extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            knowledgeIntro: '',
+            knowledgeImtermed: '',
+            knowledgeAdv: '',
+            problemIntro: '',
+            problemIntermed: '',
+            problemAdv: '',
+            investIntro: '',
+            investIntermed: '',
+            investAdv: '',
+            designIntro: '',
+            designInter: '',
+            designAdv: '',
+            engIntro: '',
+            engIntermed: '',
+            engAdv: '',
+            workIntro: '',
+            workIntermed: '',
+            workAdv: '',
+            commIntro: '',
+            commIntermed: '',
+            commAdv: '',
+            profIntro: '',
+            profIntermed: '',
+            profAdv: '',
+            engsocIntro: '',
+            engsocIntermed: '',
+            engsocAdv: '',
+            ethicsIntro: '',
+            ethicsIntermed: '',
+            ethicsAdv: '',
+            econIntro: '',
+            econIntermed: '',
+            econAdv: '',
+            lifeIntro: '',
+            lifeIntermed: '',
+            lifeAdv: '',
+        };
         this.getTable();
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -58,75 +95,75 @@ export default class Table3_1_2 extends React.Component {
                         </tr>
                         <tr>
                             <td style={{ border: "1px solid #dddddd" }}>Knowledge base</td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroKnowledge" name="knowledge.intro" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntermedKnowledge" name="knowledge.imtermed" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvKnowledge" name="knowledge.adv" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroKnowledge" name="knowledgeIntro" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntermedKnowledge" name="knowledgeImtermed" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvKnowledge" name="knowledgeAdv" onChange={this.handleChange} /></center></td>
                         </tr>
                         <tr>
                             <td style={{ border: "1px solid #dddddd" }}>Problem analysis</td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroProblem" name="problem.intro" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntermedProblem" name="problem.intermed" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvProblem" name="problem.adv" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroProblem" name="problemIntro" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntermedProblem" name="problemIntermed" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvProblem" name="problemAdv" onChange={this.handleChange} /></center></td>
                         </tr>
                         <tr>
                             <td style={{ border: "1px solid #dddddd" }}>Investigation</td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroInvest" name="invest.intro" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterInvest" name="invest.intermed" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvInvest" name="invest.adv" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroInvest" name="investIntro" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterInvest" name="investIntermed" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvInvest" name="investAdv" onChange={this.handleChange} /></center></td>
                         </tr>
                         <tr>
                             <td style={{ border: "1px solid #dddddd" }}>Design</td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroDesign" name="design.intro" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterDesign" name="design.inter" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvDesign" name="design.adv" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroDesign" name="designIntro" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterDesign" name="designInter" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvDesign" name="designAdv" onChange={this.handleChange} /></center></td>
                         </tr>
                         <tr>
                             <td style={{ border: "1px solid #dddddd" }}>Use of engineering tools</td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroEng" name="eng.intro" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterEng" name="eng.intermed" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvEng" name="eng.adv" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroEng" name="engIntro" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterEng" name="engIntermed" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvEng" name="engAdv" onChange={this.handleChange} /></center></td>
                         </tr>
                         <tr>
                             <td style={{ border: "1px solid #dddddd" }}>Individual and team work</td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroWork" name="work.intro" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterWork" name="work.intermed" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvWork" name="work.adv" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroWork" name="workIntro" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterWork" name="workIntermed" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvWork" name="workAdv" onChange={this.handleChange} /></center></td>
                         </tr>
                         <tr>
                             <td style={{ border: "1px solid #dddddd" }}>Communication</td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroComm" name="comm.intro" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterComm" name="comm.intermed" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvComm" name="comm.adv" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroComm" name="commIntro" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterComm" name="commIntermed" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvComm" name="commAdv" onChange={this.handleChange} /></center></td>
                         </tr>
                         <tr>
                             <td style={{ border: "1px solid #dddddd" }}>Professionalism</td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroProf" name="prof.intro" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterProf" name="prof.intermed" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvProf" name="prof.adv" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroProf" name="profIntro" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterProf" name="profIntermed" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvProf" name="profAdv" onChange={this.handleChange} /></center></td>
                         </tr>
                         <tr>
                             <td style={{ border: "1px solid #dddddd" }}>Impact of engineering on society and the environment</td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroEngSoc" name="engsoc.intro" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterEngSoc" name="engsoc.intermed" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvEngSoc" name="engsoc.adv" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroEngSoc" name="engsocIntro" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterEngSoc" name="engsocIntermed" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvEngSoc" name="engsocAdv" onChange={this.handleChange} /></center></td>
                         </tr>
                         <tr>
                             <td style={{ border: "1px solid #dddddd" }}>Ethics and equity</td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroEthics" name="ethics.intro" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterEthics" name="ethics.intermed" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvEthics" name="ethics.adv" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroEthics" name="ethicsIntro" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterEthics" name="ethicsIntermed" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvEthics" name="ethicsAdv" onChange={this.handleChange} /></center></td>
                         </tr>
                         <tr>
                             <td style={{ border: "1px solid #dddddd" }}>Economics and project management</td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroEcon" name="econ.intro" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterEcon" name="econ.intermed" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvEcon" name="econ.adv" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroEcon" name="econIntro" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterEcon" name="econIntermed" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvEcon" name="econAdv" onChange={this.handleChange} /></center></td>
                         </tr>
                         <tr>
                             <td style={{ border: "1px solid #dddddd" }}>Life-long learning</td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroLife" name="life.intro" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterLife" name="life.intermed" onChange={this.handleChange} /></center></td>
-                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvLife" name="life.adv" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="IntroLife" name="lifeIntro" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="InterLife" name="lifeIntermed" onChange={this.handleChange} /></center></td>
+                            <td style={{ border: "1px solid #dddddd" }}><center><input type="text" id="AdvLife" name="lifeAdv" onChange={this.handleChange} /></center></td>
                         </tr>
                     </table>
                 </div>
