@@ -36,7 +36,7 @@ export default class InstructorInfo extends React.Component {
     };
     render() {
         return (
-            <form style={divStyle}  onSubmit={this.handleSubmit}>
+            <form style={divStyle} class="container"  onSubmit={this.handleSubmit}>
                 <label for="familyName">Family Name:</label>
                 <input name="familyName" placeholder='Family Name' value={this.state.familyName} onChange={e => this.change(e)} />&nbsp;&nbsp;
                 <label for="firstName">First Name:</label>

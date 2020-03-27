@@ -33,7 +33,7 @@ class App extends Component {
     const { tab, data } = this.state;
     const divStyle = {padding: '20px'};
     return (
-      <div>
+      <div class="body">
         <Navbar changeTab={this.changeTab} changeData={this.changeData} />
         {tab === 'MainPage' && <  MainPage style={divStyle} changeTab={this.changeTab} changeData={this.changeData}/>}
         {tab === 'CourseSyllabus' && < CourseSyllabus style={divStyle} getData={this.getData} />}

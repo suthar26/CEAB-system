@@ -14,7 +14,7 @@ const path = require("path");
 
 //connects mongo db
 mongoose
-  .connect('mongodb://kunj:kunj123@ds041188.mlab.com:41188/heroku_k6t11mxt', { useNewUrlParser: true })
+  .connect('mongodb://ceab-admin:CloudComputing1@ds163757.mlab.com:63757/heroku_gj4ph953', { useNewUrlParser: true })
   .catch(e => {
     console.error('Connection error', e.message)
   })
