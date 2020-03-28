@@ -10,46 +10,51 @@ import Col from 'react-bootstrap/Col';
 export default class CourseSyllabus extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            courseName: '',
-            courseYear: '',
-            courseCode: '',
-            instructorName: '',
-            lecHours: '',
-            tutHours: '',
-            labHours: '',
-            courseDescription: '',
-            knowledgeGA: '',
-            problemGA: '',
-            investigationGA: '',
-            designGA: '',
-            engineeringToolsGA: '',
-            individualGA: '',
-            communicationGA: '',
-            professionalismGA: '',
-            environmentGA: '',
-            ethicsGA: '',
-            economicsGA: '',
-            learningGA: '',
-            mathPerct: '',
-            basicSciPerct: '',
-            studiesPerct: '',
-            engSciPerct: '',
-            engDesignPerct: ''
-        };
+        if (this.props.data != null) {
+            this.state = this.props.data;
+        }
+        else {
+            this.state = {
+                courseName: '',
+                courseYear: '',
+                courseCode: '',
+                instructorName: '',
+                lecHours: '',
+                tutHours: '',
+                labHours: '',
+                courseDescription: '',
+                knowledgeGA: '',
+                problemGA: '',
+                investigationGA: '',
+                designGA: '',
+                engineeringToolsGA: '',
+                individualGA: '',
+                communicationGA: '',
+                professionalismGA: '',
+                environmentGA: '',
+                ethicsGA: '',
+                economicsGA: '',
+                learningGA: '',
+                mathPerct: '',
+                basicSciPerct: '',
+                studiesPerct: '',
+                engSciPerct: '',
+                engDesignPerct: ''
+            };
+        }
         this.handleChange = this.change.bind(this);
         this.handleSubmit = this.onSubmit.bind(this);
-    } 
+    }
 
     //gets the values entered by user and set it state variables above
     change = e => {
         this.setState(
-        {[e.target.name]: e.target.value});
+            { [e.target.name]: e.target.value });
     };
 
     onSubmit = e => {
         e.preventDefault();
-        axios.post('/api/submitInstructor', {
+        axios.post('/api/submitSyllabus', {
             courses: this.state
         }).then(alert("Saved"));
         window.location.reload();
@@ -58,7 +63,7 @@ export default class CourseSyllabus extends React.Component {
 
     render() {
         return (
-            <div class = "container">
+            <div class="container">
                 <Form autocomplete="on" onSubmit={this.handleSubmit}>
                     <h1>Course Information</h1>
                     <br />
@@ -107,10 +112,10 @@ export default class CourseSyllabus extends React.Component {
                     <br />
                     <Form.Group controlId="formGridDescription">
                         <InputGroup>
-                        <InputGroup.Prepend>
-                            <InputGroup.Text><b>Course Description</b></InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl as="textarea" name="courseDescription" aria-label="With textarea" onChange={this.handleChange} />
+                            <InputGroup.Prepend>
+                                <InputGroup.Text><b>Course Description</b></InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <FormControl as="textarea" name="courseDescription" aria-label="With textarea" onChange={this.handleChange} />
                         </InputGroup>
                     </Form.Group>
                     <br />

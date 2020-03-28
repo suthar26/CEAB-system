@@ -4,25 +4,30 @@ import axios from 'axios';
 export default class ContinuousImprovment extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            courseName: '',
-            courseCode: '',
-            courseYear: '',
-            graduateAttribute: '',
-            graduateAttributeAchieved: '',
-            howAchievedKB: '',
-            howAchievedPA: '',
-            howAchievedI: '',
-            howAchievedD: '',
-            howAchievedUET: '',
-            howAchievedITW: '',
-            howAchievedCS: '',
-            howAchievedP: '',
-            howAchievedIESE: '',
-            howAchievedEE: '',
-            howAchievedEPM: '',
-            howAchievedLLL: '',
-            CourseImprovments: '',
+        if (this.props.data != null) {
+            this.state = this.props.data;
+        }
+        else {
+            this.state = {
+                courseName: '',
+                courseCode: '',
+                courseYear: '',
+                graduateAttribute: '',
+                graduateAttributeAchieved: '',
+                howAchievedKB: '',
+                howAchievedPA: '',
+                howAchievedI: '',
+                howAchievedD: '',
+                howAchievedUET: '',
+                howAchievedITW: '',
+                howAchievedCS: '',
+                howAchievedP: '',
+                howAchievedIESE: '',
+                howAchievedEE: '',
+                howAchievedEPM: '',
+                howAchievedLLL: '',
+                CourseImprovments: '',
+            }
         }
         this.handleChange = this.change.bind(this);
         this.handleSubmit = this.onSubmit.bind(this);
@@ -36,7 +41,7 @@ export default class ContinuousImprovment extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        axios.post('/api/submitInstructor', {
+        axios.post('/api/submitImprovement', {
             courses: this.state
         }).then(alert("Saved"));
         window.location.reload();
@@ -79,7 +84,7 @@ export default class ContinuousImprovment extends React.Component {
                             <br />
                             <br />
 
-                                <label for="problem analysis">Problem Analysis:</label>&nbsp;&nbsp;
+                            <label for="problem analysis">Problem Analysis:</label>&nbsp;&nbsp;
                             <select id="problem analysis">
                                 <option value="unsatisfactory">Unsatisfactory</option>
                                 <option value="developing">Developing</option>
@@ -90,7 +95,7 @@ export default class ContinuousImprovment extends React.Component {
                             <br />
                             <br />
 
-                                <label for="investigation">Investigation:</label>&nbsp;&nbsp;
+                            <label for="investigation">Investigation:</label>&nbsp;&nbsp;
                             <select id="investigation">
                                 <option value="unsatisfactory">Unsatisfactory</option>
                                 <option value="developing">Developing</option>
@@ -101,7 +106,7 @@ export default class ContinuousImprovment extends React.Component {
                             <br />
                             <br />
 
-                                <label for="design">Design:</label>&nbsp;&nbsp;
+                            <label for="design">Design:</label>&nbsp;&nbsp;
                             <select id="design">
                                 <option value="unsatisfactory">Unsatisfactory</option>
                                 <option value="developing">Developing</option>
@@ -112,7 +117,7 @@ export default class ContinuousImprovment extends React.Component {
                             <br />
                             <br />
 
-                                <label for="use of engineering tools">Use of Engineering Tools:</label>&nbsp;&nbsp;
+                            <label for="use of engineering tools">Use of Engineering Tools:</label>&nbsp;&nbsp;
                             <select id="use of engineering tools">
                                 <option value="unsatisfactory">Unsatisfactory</option>
                                 <option value="developing">Developing</option>
@@ -123,7 +128,7 @@ export default class ContinuousImprovment extends React.Component {
                             <br />
                             <br />
 
-                                <label for="individual and team work">Individual and Team Work:</label>&nbsp;&nbsp;
+                            <label for="individual and team work">Individual and Team Work:</label>&nbsp;&nbsp;
                             <select id="individual and team work">
                                 <option value="unsatisfactory">Unsatisfactory</option>
                                 <option value="developing">Developing</option>
@@ -134,7 +139,7 @@ export default class ContinuousImprovment extends React.Component {
                             <br />
                             <br />
 
-                                <label for="communication skills">Communication Skills:</label>&nbsp;&nbsp;
+                            <label for="communication skills">Communication Skills:</label>&nbsp;&nbsp;
                             <select id="communication skills">
                                 <option value="unsatisfactory">Unsatisfactory</option>
                                 <option value="developing">Developing</option>
@@ -145,7 +150,7 @@ export default class ContinuousImprovment extends React.Component {
                             <br />
                             <br />
 
-                                <label for="professionalism">Professionalism:</label>&nbsp;&nbsp;
+                            <label for="professionalism">Professionalism:</label>&nbsp;&nbsp;
                             <select id="professionalism">
                                 <option value="unsatisfactory">Unsatisfactory</option>
                                 <option value="developing">Developing</option>
@@ -156,7 +161,7 @@ export default class ContinuousImprovment extends React.Component {
                             <br />
                             <br />
 
-                                <label for="impact on society and environment">Impact of Engineering of Society and the Environment:</label>&nbsp;&nbsp;
+                            <label for="impact on society and environment">Impact of Engineering of Society and the Environment:</label>&nbsp;&nbsp;
                             <select id="impact on society and environment">
                                 <option value="unsatisfactory">Unsatisfactory</option>
                                 <option value="developing">Developing</option>
@@ -167,7 +172,7 @@ export default class ContinuousImprovment extends React.Component {
                             <br />
                             <br />
 
-                                <label for="ethics and equity">Ethics and Equity:</label>&nbsp;&nbsp;
+                            <label for="ethics and equity">Ethics and Equity:</label>&nbsp;&nbsp;
                             <select id="ethics and equity">
                                 <option value="unsatisfactory">Unsatisfactory</option>
                                 <option value="developing">Developing</option>
@@ -178,7 +183,7 @@ export default class ContinuousImprovment extends React.Component {
                             <br />
                             <br />
 
-                                <label for="economics and project management">Economics and Project Management:</label>&nbsp;&nbsp;
+                            <label for="economics and project management">Economics and Project Management:</label>&nbsp;&nbsp;
                             <select id="economics and project management">
                                 <option value="unsatisfactory">Unsatisfactory</option>
                                 <option value="developing">Developing</option>
@@ -189,7 +194,7 @@ export default class ContinuousImprovment extends React.Component {
                             <br />
                             <br />
 
-                                <label for="life long learning">Life-Long Learning:</label>&nbsp;&nbsp;
+                            <label for="life long learning">Life-Long Learning:</label>&nbsp;&nbsp;
                             <select id="life long learning">
                                 <option value="unsatisfactory">Unsatisfactory</option>
                                 <option value="developing">Developing</option>

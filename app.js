@@ -3,7 +3,6 @@ const express = require('express');
 var cors = require('cors');
 const bodyParser = require('body-parser');
 const Data = require('./data');
-const axios = require('axios');
 const API_PORT = process.env.PORT || 3001;
 const app = express();
 app.use(cors());
@@ -28,6 +27,90 @@ db.once('open', () => console.log('connected to the database'));
 // checks if connection with the database is successful
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+//
+router.get('/loadSyllabus', (req, res) => {
+  code = req.courseID;
+  Data.findOne({'id': code},(err, data) => {
+    if(data.id == code){
+      return res.json({ success: true, data: data });
+    }
+    return err;
+  });
+});
+
+//
+router.get('/loadTable', (req, res) => {
+  Data.findOne({'id': 'Table3_1_2'},(err, data) => {
+    return res.json({ success: true, data: data });
+  });
+});
+
+//
+router.get('/loadInstructor', (req, res) => {
+  code = req.instructorName;
+  Data.findOne({'id': code},(err, data) => {
+    if(data.id == code){
+      return res.json({ success: true, data: data });
+    }
+    return err;
+  });
+});
+
+//
+router.post('/submitInstructor', (req, res) => {
+  const { instructor } = req.body;
+  let submit = new Data();
+  for (const value in instructor) {
+    submit[value] = instructor[value];
+  }
+
+  data.save((err) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
+
+//
+router.post('/submitSyllabus', (req, res) => {
+  const { syllabus } = req.body;
+  let submit = new Data();
+  for (const value in syllabus) {
+    submit[value] = syllabus[value];
+  }
+
+  data.save((err) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
+
+//
+router.post('/submitTable', (req, res) => {
+  const { table } = req.body;
+  let submit = new Data();
+  for (const value in table) {
+    submit[value] = table[value];
+  }
+
+  data.save((err) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
+
+//
+router.post('/submitImprovement', (req, res) => {
+  const { improve } = req.body;
+  let submit = new Data();
+  for (const value in improve) {
+    submit[value] = improve[value];
+  }
+
+  data.save((err) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
 
 
 // append /api for our http requests
