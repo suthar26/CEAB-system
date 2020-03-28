@@ -39,7 +39,7 @@ export default class CourseSyllabus extends React.Component {
         };
         this.handleChange = this.change.bind(this);
         this.handleSubmit = this.onSubmit.bind(this);
-    }
+    } 
 
     //gets the values entered by user and set it state variables above
     change = e => {
