@@ -10,7 +10,7 @@ export default class MainPage extends React.Component {
         super(props);
         this.state = {
             courseID: '',
-            instructorDetails: '',
+            instructorName: '',
             courseCode: ''
         };
         this.textInput = React.createRef();
@@ -20,10 +20,10 @@ export default class MainPage extends React.Component {
     }
     handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
-    loadSyllabus = () => {
+    loadSyllabus = (load) => {
         console.log(this.state.courseID);
-        if (this.state.courseID != null) {
-            fetch('/api/loadSyllabus')
+        if (load) {
+            fetch('/api/loadSyllabus?courseID=' + this.state.courseID)
                 .then((data) => data.json())
                 .then((res) => this.props.changeData(res.data))
                 .then(this.props.changeTab('CourseSyllabus'))
@@ -50,25 +50,19 @@ export default class MainPage extends React.Component {
 
     };
 
-    loadTable = (search) => {
-        if (search != null) {
-            fetch('/api/loadTable')
-                .then((data) => data.json())
-                .then((res) => this.props.changeData(res.data))
-                .then(this.props.changeTab('Table3_1_2'))
-                .then(console.log(this.props.getData));
-        }
-        else {
-            this.props.changeData(null)
-            this.props.changeTab('Table3_1_2')
-        }
+    loadTable = () => {
+        fetch('/api/loadTable')
+            .then((data) => data.json())
+            .then((res) => this.props.changeData(res.data))
+            .then(this.props.changeTab('Table3_1_2'))
+            .then(console.log(this.props.getData));
 
     };
 
-    loadInstructor = () => {
+    loadInstructor = (load) => {
         console.log(this.state.instructorDetails);
-        if (this.state.instructorDetails != null) {
-            fetch('/api/loadInstructor')
+        if (load) {
+            fetch('/api/loadInstructor?instructorName=' + this.state.instructorName)
                 .then((data) => data.json())
                 .then((res) => this.props.changeData(res.data))
                 .then(this.props.changeTab('InstructorInfo'))
@@ -94,16 +88,15 @@ export default class MainPage extends React.Component {
                         aria-describedby="basic-addon2"
                     />
                     <InputGroup.Append>
-                        <Button variant="primary" onClick={() => this.loadSyllabus()}>Load Course</Button>
-                        <Button variant="primary" onClick={() => this.loadSyllabus()}>New Course</Button>
+                        <Button variant="primary" onClick={() => this.loadSyllabus(true)}>Load Course</Button>
+                        <Button variant="primary" onClick={() => this.loadSyllabus(false)}>New Course</Button>
                     </InputGroup.Append>
                 </InputGroup>
 
                 <h1>Table 3.1.2</h1>
                 <InputGroup>
                     <InputGroup.Append>
-                        <Button variant="primary" onClick={() => this.loadTable('Table3_1_2')}>Load Course</Button>
-                        <Button variant="primary" onClick={() => this.loadTable(null)}>New Course</Button>
+                        <Button variant="primary" onClick={() => this.loadTable()}>Load Table</Button>
                     </InputGroup.Append>
                 </InputGroup>
 
@@ -111,15 +104,15 @@ export default class MainPage extends React.Component {
                 <h1>Instructor Info </h1>
                 <InputGroup>
                     <FormControl
-                        name="instructorDetails"
+                        name="instructorName"
                         onChange={this.handleChange}
                         placeholder="Instructor First & Last Name"
                         aria-label="Instructor First & Last Name"
                         aria-describedby="basic-addon2"
                     />
                     <InputGroup.Append>
-                        <Button variant="primary" onClick={() => this.loadInstructor()}>Load Course</Button>
-                        <Button variant="primary" onClick={() => this.loadInstructor()}>New Course</Button>
+                        <Button variant="primary" onClick={() => this.loadInstructor(true)}>Load Instructor</Button>
+                        <Button variant="primary" onClick={() => this.loadInstructor(false)}>New Instructor</Button>
                     </InputGroup.Append>
                 </InputGroup>
 

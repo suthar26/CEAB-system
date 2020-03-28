@@ -9,67 +9,72 @@ import Table from 'react-bootstrap/Table';
 export default class Table3_1_2 extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            knowledgeIntro: '',
-            knowledgeImtermed: '',
-            knowledgeAdv: '',
-            problemIntro: '',
-            problemIntermed: '',
-            problemAdv: '',
-            investIntro: '',
-            investIntermed: '',
-            investAdv: '',
-            designIntro: '',
-            designInter: '',
-            designAdv: '',
-            engIntro: '',
-            engIntermed: '',
-            engAdv: '',
-            workIntro: '',
-            workIntermed: '',
-            workAdv: '',
-            commIntro: '',
-            commIntermed: '',
-            commAdv: '',
-            profIntro: '',
-            profIntermed: '',
-            profAdv: '',
-            engsocIntro: '',
-            engsocIntermed: '',
-            engsocAdv: '',
-            ethicsIntro: '',
-            ethicsIntermed: '',
-            ethicsAdv: '',
-            econIntro: '',
-            econIntermed: '',
-            econAdv: '',
-            lifeIntro: '',
-            lifeIntermed: '',
-            lifeAdv: ''
-        };
+        if (this.props.data != null) {
+            this.state = this.props.data;
+        }
+        else {
+            this.state = {
+                knowledgeIntro: '',
+                knowledgeImtermed: '',
+                knowledgeAdv: '',
+                problemIntro: '',
+                problemIntermed: '',
+                problemAdv: '',
+                investIntro: '',
+                investIntermed: '',
+                investAdv: '',
+                designIntro: '',
+                designInter: '',
+                designAdv: '',
+                engIntro: '',
+                engIntermed: '',
+                engAdv: '',
+                workIntro: '',
+                workIntermed: '',
+                workAdv: '',
+                commIntro: '',
+                commIntermed: '',
+                commAdv: '',
+                profIntro: '',
+                profIntermed: '',
+                profAdv: '',
+                engsocIntro: '',
+                engsocIntermed: '',
+                engsocAdv: '',
+                ethicsIntro: '',
+                ethicsIntermed: '',
+                ethicsAdv: '',
+                econIntro: '',
+                econIntermed: '',
+                econAdv: '',
+                lifeIntro: '',
+                lifeIntermed: '',
+                lifeAdv: ''
+            };
+        }
         this.getTable();
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange = (event) => {
         let name = event.target.name;
-        
+
         console.log(name);
         let val = event.target.value;
-        this.setState({[name]: val});
+        this.setState({ [name]: val });
         console.log(this.state);
     }
     handleSubmit(event) {
-        let data = this.state;
+        // let data = this.state;
         event.preventDefault();
-        var result = {}
-        for (var i in data) {
-            var keys = i.split('.')
-            keys.reduce(function (r, e, j) {
-                return r[e] || (r[e] = isNaN(Number(keys[j + 1])) ? (keys.length - 1 == j ? data[i] : {}) : [])
-            }, result)
-        }
-        this.state = (result);
+        // var result = {}
+        // for (var i in data) {
+        //     var keys = i.split('.')
+        //     keys.reduce(function (r, e, j) {
+        //         return r[e] || (r[e] = isNaN(Number(keys[j + 1])) ? (keys.length - 1 == j ? data[i] : {}) : [])
+        //     }, result)
+        // }
+        // this.state = (result);
         axios.post('/api/submitTable', {
             courses: this.state
         }).then(alert("Saved"));
