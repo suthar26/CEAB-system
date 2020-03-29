@@ -29,25 +29,16 @@ export default class MainPage extends React.Component {
                 .then(this.props.changeTab('CourseSyllabus'))
                 .then(console.log(this.props.getData));
         }
-        else {
-            this.props.changeData(null)
-            this.props.changeTab('CourseSyllabus')
-        }
-
     };
 
     loadCourse = () => {
         console.log(this.state.courseCode);
-        if (this.state.courseCode != null) {
+        if (this.state.courseCode != '') {
             fetch('/api/loadCourse')
                 .then((data) => data.json())
                 .then((res) => this.props.changeData(res.data))
                 .then(console.log(this.props.getData));
         }
-        else {
-            this.props.changeData(null)
-        }
-
     };
 
     loadTable = () => {
@@ -56,7 +47,6 @@ export default class MainPage extends React.Component {
             .then((res) => this.props.changeData(res.data))
             .then(this.props.changeTab('Table3_1_2'))
             .then(console.log(this.props.getData));
-
     };
 
     loadInstructor = (load) => {
@@ -68,12 +58,13 @@ export default class MainPage extends React.Component {
                 .then(this.props.changeTab('InstructorInfo'))
                 .then(console.log(this.props.getData));
         }
-        else {
-            this.props.changeData(null)
-            this.props.changeTab('InstructorInfo')
-        }
 
     };
+
+    newPage = (tabName) => {
+        this.props.changeData(null);
+        this.props.changeTab(tabName);
+    }
 
     render() {
         return (
@@ -89,7 +80,7 @@ export default class MainPage extends React.Component {
                     />
                     <InputGroup.Append>
                         <Button variant="primary" onClick={() => this.loadSyllabus(true)}>Load Course</Button>
-                        <Button variant="primary" onClick={() => this.loadSyllabus(false)}>New Course</Button>
+                        <Button variant="primary" onClick={() => this.newPage('CourseStllabus')}>New Course</Button>
                     </InputGroup.Append>
                 </InputGroup>
 
@@ -112,7 +103,7 @@ export default class MainPage extends React.Component {
                     />
                     <InputGroup.Append>
                         <Button variant="primary" onClick={() => this.loadInstructor(true)}>Load Instructor</Button>
-                        <Button variant="primary" onClick={() => this.loadInstructor(false)}>New Instructor</Button>
+                        <Button variant="primary" onClick={() => this.newPage('InstructorInfo')}>New Instructor</Button>
                     </InputGroup.Append>
                 </InputGroup>
 

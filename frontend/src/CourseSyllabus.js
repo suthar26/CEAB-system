@@ -7,6 +7,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import Table from 'react-bootstrap/Table';
 import Col from 'react-bootstrap/Col';
 
+
 export default class CourseSyllabus extends React.Component {
     constructor(props) {
         super(props);
@@ -63,9 +64,33 @@ export default class CourseSyllabus extends React.Component {
 
     render() {
         return (
-            <div class="container">
-                <Form autocomplete="on" onSubmit={this.handleSubmit}>
-                    <h1>Course Information</h1>
+            <form class="container" autocomplete="on" onSubmit={this.handleSubmit}>
+                <div class="container-fluid">
+                    <div class="form-group" style={{float: "left"}}>
+                        <label for="courseName">Course Name </label>
+                        <FormControl
+                        name="courseName"
+                        onChange={this.change}
+                        placeholder="Course ID"
+                        aria-label="Course ID"
+                        aria-describedby="basic-addon2"
+                    />
+                        {/* <input name="courseName" type="text" id="courseName" placeholder='Course Name' class="form-control" value={this.state.courseName} onChange={e => this.change()} /> */}
+                    </div>
+                    <div class="form-group" style={{float: "left",marginLeft: "10px"}}>
+                        <label for="courseCode">Course Code</label>
+                        <input name="courseCode" type="text" id="courseCode" placeholder='Course Code' class="form-control" value={this.state.courseCode} onChange={e => this.change()} />
+                    </div>
+                    <div class="form-group" style={{float: "left",marginLeft: "10px"}}>
+                        <label for="InstructorName">Instructor Name</label>
+                        <input name="instructorName" type="text" id="InstructorName" class="form-control" placeholder='Instructor Name' aria-describedby="instructorHelp" value={this.state.instructorName} onChange={e => this.change(e)} />
+                        <small id="instructorHelp" class="form-text" style={{color: "black"}}>Enter First & Last Name</small>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
                     <br />
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridCourseName">
