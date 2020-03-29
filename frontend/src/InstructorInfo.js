@@ -4,19 +4,26 @@ import axios from 'axios';
 export default class InstructorInfo extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {familyName: '',
-        firstName: '',
-        acadRank: '',
-        hireDate: '',
-        highestDegree: '',
-        awardDate: '',
-        awardingHEI: '',
-        country: '',
-        licStatus: '',
-        awardingCA: '',
-        hqpSupervised: '',
-        yearsNonAcademicExp: '',
-        typeNonAcademicExp: '',}
+        if (this.props.data != null) {
+            this.state = this.props.data;
+        }
+        else {
+            this.state = {
+                familyName: '',
+                firstName: '',
+                acadRank: '',
+                hireDate: '',
+                highestDegree: '',
+                awardDate: '',
+                awardingHEI: '',
+                country: '',
+                licStatus: '',
+                awardingCA: '',
+                hqpSupervised: '',
+                yearsNonAcademicExp: '',
+                typeNonAcademicExp: ''
+            }
+        }
         this.handleChange = this.change.bind(this);
         this.handleSubmit = this.onSubmit.bind(this);
     }
@@ -36,12 +43,12 @@ export default class InstructorInfo extends React.Component {
     };
     render() {
         return (
-            <form style={divStyle} class="container"  onSubmit={this.handleSubmit}>
+            <form style={divStyle} class="container" onSubmit={this.handleSubmit}>
                 <label for="familyName">Family Name:</label>
                 <input name="familyName" placeholder='Family Name' value={this.state.familyName} onChange={e => this.change(e)} />&nbsp;&nbsp;
                 <label for="firstName">First Name:</label>
                 <input name="firstName" placeholder='First Name' value={this.state.firstName} onChange={e => this.change(e)} />&nbsp;&nbsp;
-                <br/>
+                <br />
                 <label for="acadRank">Academic Rank:</label>
                 <select id="acadRank">
                     <option value="full">Full</option>
@@ -67,7 +74,7 @@ export default class InstructorInfo extends React.Component {
                     <option value="2019">2019</option>
                     <option value="2020">2020</option>
                 </select>
-                <br/>
+                <br />
                 <label for="highestDegree">Highest Degree:</label>
                 <select id="highestDegree">
                     <option value="DPhil">DPhil</option>
@@ -136,7 +143,7 @@ export default class InstructorInfo extends React.Component {
                     <option value="2019">2019</option>
                     <option value="2020">2020</option>
                 </select>
-                <br/>
+                <br />
                 <label for="awardingHEI">Awarding HEI:</label>
                 <select id="awardingHEI">
                     <option value="BCIT">BCIT</option>
@@ -252,7 +259,7 @@ export default class InstructorInfo extends React.Component {
                     <option value="unitedStates">United States</option>
                     <option value="other">Other</option>
                 </select>
-                <br/>
+                <br />
                 <label for="licStatus">Lic. Status:</label>
                 <select id="licStatus">
                     <option value="EIT">EIT</option>
@@ -262,7 +269,7 @@ export default class InstructorInfo extends React.Component {
                     <option value="PEng">PEng</option>
                     <option value="None">None</option>
                 </select>
-                <br/>
+                <br />
                 <label for="awardingCA">Awarding HEI:</label>
                 <select id="awardingHEI">
                     <option value="APEGA">APEGA</option>
@@ -279,7 +286,7 @@ export default class InstructorInfo extends React.Component {
                     <option value="PEO">PEO</option>
                     <option value="None">None</option>
                 </select>
-                <br/>
+                <br />
                 <label for="hqpSupervised">HQP Supervised Last 6 Years:</label>
                 <select id="hireDate">
                     <option value="0">0</option>
@@ -296,7 +303,7 @@ export default class InstructorInfo extends React.Component {
                     <option value="11-20">11-20</option>
                     <option value=">20">&#62;20</option>
                 </select>
-                <br/>
+                <br />
                 <label for="yearsNonAcademicExp">Years of Non-Academic Experience:</label>
                 <select id="yearsNonAcademicExp">
                     <option value="0">0</option>
@@ -313,24 +320,24 @@ export default class InstructorInfo extends React.Component {
                     <option value="11-20">11-20</option>
                     <option value=">20">&#62;20</option>
                 </select>
-                <br/>
+                <br />
                 <fieldset>
                     <legend>Type(s) of Non-Academic Experience:</legend>
                     <p>
-                        <label><input type="checkbox"  name="typeNonAcademicExp" value="government"/>Government</label>
+                        <label><input type="checkbox" name="typeNonAcademicExp" value="government" />Government</label>
                         <br />
-                        <label><input type="checkbox"  name="typeNonAcademicExp" value="industry"/>Industry</label>
+                        <label><input type="checkbox" name="typeNonAcademicExp" value="industry" />Industry</label>
                         <br />
-                        <label><input type="checkbox"  name="typeNonAcademicExp" value="consulting"/>Consulting</label>
+                        <label><input type="checkbox" name="typeNonAcademicExp" value="consulting" />Consulting</label>
                         <br />
-                        <label><input type="checkbox"  name="typeNonAcademicExp" value="research"/>Research</label>
+                        <label><input type="checkbox" name="typeNonAcademicExp" value="research" />Research</label>
                         <br />
-                        <label><input type="checkbox"  name="typeNonAcademicExp" value="Other"/>Other</label>
+                        <label><input type="checkbox" name="typeNonAcademicExp" value="Other" />Other</label>
                         <br />
                     </p>
                 </fieldset>
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <button type="submit">Submit</button>
             </form>
         )
@@ -340,5 +347,6 @@ export default class InstructorInfo extends React.Component {
 
 }
 
-        const divStyle = {
-        padding: '20px'};
+const divStyle = {
+    padding: '20px'
+};
