@@ -80,7 +80,7 @@ export default class MainPage extends React.Component {
                     />
                     <InputGroup.Append>
                         <Button variant="primary" onClick={() => this.loadSyllabus(true)}>Load Course</Button>
-                        <Button variant="primary" onClick={() => this.newPage('CourseStllabus')}>New Course</Button>
+                        <Button variant="primary" onClick={() => this.newPage('CourseSyllabus')}>New Course</Button>
                     </InputGroup.Append>
                 </InputGroup>
 
