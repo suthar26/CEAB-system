@@ -64,33 +64,9 @@ export default class CourseSyllabus extends React.Component {
 
     render() {
         return (
-            <form class="container" autocomplete="on" onSubmit={this.handleSubmit}>
-                <div class="container-fluid">
-                    <div class="form-group" style={{float: "left"}}>
-                        <label for="courseName">Course Name </label>
-                        <FormControl
-                        name="courseName"
-                        onChange={this.change}
-                        placeholder="Course ID"
-                        aria-label="Course ID"
-                        aria-describedby="basic-addon2"
-                    />
-                        {/* <input name="courseName" type="text" id="courseName" placeholder='Course Name' class="form-control" value={this.state.courseName} onChange={e => this.change()} /> */}
-                    </div>
-                    <div class="form-group" style={{float: "left",marginLeft: "10px"}}>
-                        <label for="courseCode">Course Code</label>
-                        <input name="courseCode" type="text" id="courseCode" placeholder='Course Code' class="form-control" value={this.state.courseCode} onChange={e => this.change()} />
-                    </div>
-                    <div class="form-group" style={{float: "left",marginLeft: "10px"}}>
-                        <label for="InstructorName">Instructor Name</label>
-                        <input name="instructorName" type="text" id="InstructorName" class="form-control" placeholder='Instructor Name' aria-describedby="instructorHelp" value={this.state.instructorName} onChange={e => this.change(e)} />
-                        <small id="instructorHelp" class="form-text" style={{color: "black"}}>Enter First & Last Name</small>
-                    </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-
+            <div class="container">
+                <Form autocomplete="on" onSubmit={this.handleSubmit}>
+                    <h1>Course Syllabus</h1>
                     <br />
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridCourseName">
@@ -115,7 +91,7 @@ export default class CourseSyllabus extends React.Component {
                     </Form.Row>
                     <br />
                     <Form.Group controlId="formGridLecture">
-                        <Form.Label><b>Lecutre Hours</b></Form.Label>
+                        <Form.Label><b>Lecture Hours</b></Form.Label>
                         <Form.Control type="number" name="lecHours" min="1" step="any" placeholder="Enter Lecture hours per week" onChange={this.handleChange} />
                     </Form.Group>
 
@@ -145,23 +121,101 @@ export default class CourseSyllabus extends React.Component {
                     </Form.Group>
                     <br />
 
-                    <Form.Group id="formGridCheckbox">
+                    <Form.Group id="formGridRadiobox">
                         <Form.Label><b>Grading Attributes Used in Course</b></Form.Label>
                         <p><small>Select all that apply</small></p>
-                        <Form.Check type="checkbox" label="Knowledge Base" name="knowledgeGA" onChange={this.handleChange} />
-                        <Form.Check type="checkbox" label="Problem Analysis" name="problemGA" onChange={this.handleChange} />
-                        <Form.Check type="checkbox" label="Investigation" name="investigationGA" onChange={this.handleChange} />
-                        <Form.Check type="checkbox" label="Design" name="designGA" onChange={this.handleChange} />
-                        <Form.Check type="checkbox" label="Use of Engineering Tools" name="engineeringToolsGA" onChange={this.handleChange} />
-                        <Form.Check type="checkbox" label="Individual and Team Work" name="individualGA" onChange={this.handleChange} />
-                        <Form.Check type="checkbox" label="Communication Skills" name="communicationGA" onChange={this.handleChange} />
-                        <Form.Check type="checkbox" label="Professionalism" name="professionalismGA" onChange={this.handleChange} />
-                        <Form.Check type="checkbox" label="Impact of Engineering of Society and the Environment" name="environmentGA" onChange={this.handleChange} />
-                        <Form.Check type="checkbox" label="Ethics and Equity" name="ethicsGA" onChange={this.handleChange} />
-                        <Form.Check type="checkbox" label="Economics and Project Management" name="economicsGA" onChange={this.handleChange} />
-                        <Form.Check type="checkbox" label="Life-Long Learning" name="learningGA" onChange={this.handleChange} />
+                        <Table variant="dark">
+                            <thead>
+                                <tr>
+                                    <th>Attributes</th>
+                                    <th colSpan="3"><center>Levels</center></th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th><center>Introductory</center></th>
+                                    <th><center>Intermediate</center></th>
+                                    <th><center>Advanced</center></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Knowledge Base</td>
+                                    <td><center><Form.Check type="radio" name="knowledgeGA" value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="knowledgeGA" value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="knowledgeGA" value="advanced"/></center></td>
+                                </tr>
+                                <tr>
+                                    <td>Problem Analysis</td>
+                                    <td><center><Form.Check type="radio" name="problemGA" value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="problemGA" value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="problemGA" value="advanced" onChange={this.handleChange} /></center></td>
+                                </tr>
+                                <tr>
+                                    <td>Investigation</td>
+                                    <td><center><Form.Check type="radio" name="investigationGA" value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="investigationGA" value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="investigationGA" value="advanced" onChange={this.handleChange} /></center></td>
+                                </tr>
+                                <tr>
+                                    <td>Design</td>
+                                    <td><center><Form.Check type="radio" name="designGA" value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="designGA" value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="designGA" value="advanced" onChange={this.handleChange} /></center></td>
+                                </tr>
+                                <tr>
+                                    <td>Use of Engineering Tools</td>
+                                    <td><center><Form.Check type="radio" name="engineeringToolsGA" value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="engineeringToolsGA" value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="engineeringToolsGA" value="advanced" onChange={this.handleChange} /></center></td>
+                                </tr>
+                                <tr>
+                                    <td>Individual and Team Work</td>
+                                    <td><center><Form.Check type="radio" name="individualGA" value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="individualGA" value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="individualGA" value="advanced" onChange={this.handleChange} /></center></td>
+                                </tr>
+                                <tr>
+                                    <td>Communication Skills</td>
+                                    <td><center><Form.Check type="radio" name="communicationGA" value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="communicationGA" value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="communicationGA" value="advanced" onChange={this.handleChange} /></center></td>
+                                </tr>
+                                <tr>
+                                    <td>Professionalism</td>
+                                    <td><center><Form.Check type="radio" name="professionalismGA" value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="professionalismGA" value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="professionalismGA" value="advanced" onChange={this.handleChange} /></center></td>
+                                </tr>
+                                <tr>
+                                    <td>Impact of Engineering of Society and Environment</td>
+                                    <td><center><Form.Check type="radio" name="environmentGA" value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="environmentGA" value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="environmentGA" value="advanced" onChange={this.handleChange} /></center></td>
+                                </tr>
+                                <tr>
+                                    <td>Ethics and Equity</td>
+                                    <td><center><Form.Check type="radio" name="ethicsGA" value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="ethicsGA" value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="ethicsGA" value="advanced" onChange={this.handleChange} /></center></td>
+                                </tr>
+                                <tr>
+                                    <td>Economics and Project Management</td>
+                                    <td><center><Form.Check type="radio" name="economicsGA" value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="economicsGA" value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="economicsGA" value="advanced" onChange={this.handleChange} /></center></td>
+                                </tr>
+                                <tr>
+                                    <td>Life-Long Learning</td>
+                                    <td><center><Form.Check type="radio" name="learningGA" value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="learningGA" value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="learningGA" value="advanced" onChange={this.handleChange} /></center></td>
+                                </tr>
+                            </tbody>
+                        </Table>
                     </Form.Group>
+
                     <br />
+
                     <Form.Group controlId="formGridCategory">
                         <Form.Label><b>Content Category Breakdown</b></Form.Label>
                         <p><small>Please enter the course category breakdown percentage as an integer</small></p>
@@ -190,10 +244,10 @@ export default class CourseSyllabus extends React.Component {
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
+
                 </Form>
             </div>
         )
     }
-
 }
 
