@@ -42,7 +42,7 @@ export default class ContinuousImprovment extends React.Component {
     onSubmit = e => {
         e.preventDefault();
         axios.post('/api/submitImprovement', {
-            courses: this.state
+            data: this.state
         }).then(alert("Saved"));
         window.location.reload();
 

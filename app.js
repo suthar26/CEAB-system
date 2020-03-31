@@ -60,9 +60,9 @@ router.get('/loadInstructor', (req, res) => {
 
 //
 router.post('/submitInstructor', (req, res) => {
-  const { instructor } = req.body;
+  const { instructor } = req.body.data;
   let submit = new Instructor();
-  for (const value in instructor) {
+  for (const value of Object.keys(instructor)) {
     submit[value] = instructor[value];
   }
   submit.save((err) => {
@@ -73,14 +73,11 @@ router.post('/submitInstructor', (req, res) => {
 
 //
 router.post('/submitSyllabus', (req, res) => {
-  console.log(req.body.courses)
-  const { syllabus } = req.body.courses;
+  let syllabus = req.body.courses;
   let submit = new Course();
-  for (const value in syllabus) {
+  for (const value of Object.keys(syllabus)) {
     submit[value] = syllabus[value];
   }
-  console.log(submit)
-
   submit.save((err) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
@@ -103,9 +100,9 @@ router.post('/submitSyllabus', (req, res) => {
 
 //
 router.post('/submitImprovement', (req, res) => {
-  const { improve } = req.body;
+  const { improve } = req.body.data;
   let submit = new Improvement();
-  for (const value in improve) {
+  for (const value of Object.keys(improve)) {
     submit[value] = improve[value];
   }
 

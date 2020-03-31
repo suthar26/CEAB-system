@@ -37,7 +37,7 @@ export default class InstructorInfo extends React.Component {
     onSubmit = e => {
         e.preventDefault();
         axios.post('/api/submitInstructor', {
-            courses: this.state
+            data: this.state
         }).then(alert("Saved"));
         window.location.reload();
     };
