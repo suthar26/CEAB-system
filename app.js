@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const express = require('express');
 var cors = require('cors');
 const bodyParser = require('body-parser');
-const Data = require('./data');
+const Course = require('./Models/Course');
+const Improvement = require('./Models/Improvement');
+const Instructor = require('./Models/Instructor');
 const API_PORT = process.env.PORT || 3001;
 const app = express();
 app.use(cors());
@@ -30,7 +32,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 //
 router.get('/loadSyllabus', (req, res) => {
   code = req.courseID;
-  Data.findOne({'id': code},(err, data) => {
+  Course.findOne({'id': code},(err, data) => {
     if(data.id == code){
       return res.json({ success: true, data: data });
     }
@@ -39,16 +41,16 @@ router.get('/loadSyllabus', (req, res) => {
 });
 
 //
-router.get('/loadTable', (req, res) => {
-  Data.findOne({'id': 'Table3_1_2'},(err, data) => {
-    return res.json({ success: true, data: data });
-  });
-});
+  // router.get('/loadTable', (req, res) => {
+  //   Data.findOne({'id': 'Table3_1_2'},(err, data) => {
+  //     return res.json({ success: true, data: data });
+  //   });
+  // });
 
 //
 router.get('/loadInstructor', (req, res) => {
   code = req.instructorName;
-  Data.findOne({'id': code},(err, data) => {
+  Instructor.findOne({'id': code},(err, data) => {
     if(data.id == code){
       return res.json({ success: true, data: data });
     }
@@ -59,12 +61,11 @@ router.get('/loadInstructor', (req, res) => {
 //
 router.post('/submitInstructor', (req, res) => {
   const { instructor } = req.body;
-  let submit = new Data();
+  let submit = new Instructor();
   for (const value in instructor) {
     submit[value] = instructor[value];
   }
-
-  data.save((err) => {
+  submit.save((err) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
@@ -72,41 +73,43 @@ router.post('/submitInstructor', (req, res) => {
 
 //
 router.post('/submitSyllabus', (req, res) => {
-  const { syllabus } = req.body;
-  let submit = new Data();
+  console.log(req.body.courses)
+  const { syllabus } = req.body.courses;
+  let submit = new Course();
   for (const value in syllabus) {
     submit[value] = syllabus[value];
   }
+  console.log(submit)
 
-  data.save((err) => {
+  submit.save((err) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
 });
 
 //
-router.post('/submitTable', (req, res) => {
-  const { table } = req.body;
-  let submit = new Data();
-  for (const value in table) {
-    submit[value] = table[value];
-  }
+// router.post('/submitTable', (req, res) => {
+//   const { table } = req.body;
+//   let submit = new Data();
+//   for (const value in table) {
+//     submit[value] = table[value];
+//   }
 
-  data.save((err) => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
-});
+//   data.save((err) => {
+//     if (err) return res.json({ success: false, error: err });
+//     return res.json({ success: true });
+//   });
+// });
 
 //
 router.post('/submitImprovement', (req, res) => {
   const { improve } = req.body;
-  let submit = new Data();
+  let submit = new Improvement();
   for (const value in improve) {
     submit[value] = improve[value];
   }
 
-  data.save((err) => {
+  submit.save((err) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
   });
