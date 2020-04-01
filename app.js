@@ -31,12 +31,20 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 //
 router.get('/loadSyllabus', (req, res) => {
-  code = req.courseID;
-  Course.findOne({'id': code},(err, data) => {
-    if(data.id == code){
+  code = req.query.courseCode;
+  Course.findOne({courseCode: code},(err, data) => {
+    if(data.courseCode != null){
       return res.json({ success: true, data: data });
     }
-    return err;
+  });
+});
+
+router.get('/loadImprovement', (req, res) => {
+  code = req.query.courseID;
+  Course.findOne({courseID: code},(err, data) => {
+    if(data.courseCode != null){
+      return res.json({ success: true, data: data });
+    }
   });
 });
 
@@ -49,12 +57,12 @@ router.get('/loadSyllabus', (req, res) => {
 
 //
 router.get('/loadInstructor', (req, res) => {
-  code = req.instructorName;
-  Instructor.findOne({'id': code},(err, data) => {
-    if(data.id == code){
+  first = req.query.instructorFirstName;
+  family = req.query.instructorFamilyName;
+  Instructor.findOne({firstName: first, familyName: family},(err, data) => {
+    if(data.instructorName != null){
       return res.json({ success: true, data: data });
     }
-    return err;
   });
 });
 
@@ -62,7 +70,7 @@ router.get('/loadInstructor', (req, res) => {
 router.post('/submitInstructor', (req, res) => {
   const { instructor } = req.body.data;
   let submit = new Instructor();
-  for (const value of Object.keys(instructor)) {
+  for (const value of Object.keys(submit)) {
     submit[value] = instructor[value];
   }
   submit.save((err) => {
@@ -75,7 +83,7 @@ router.post('/submitInstructor', (req, res) => {
 router.post('/submitSyllabus', (req, res) => {
   let syllabus = req.body.courses;
   let submit = new Course();
-  for (const value of Object.keys(syllabus)) {
+  for (const value of Object.keys(submit)) {
     submit[value] = syllabus[value];
   }
   submit.save((err) => {
@@ -102,7 +110,7 @@ router.post('/submitSyllabus', (req, res) => {
 router.post('/submitImprovement', (req, res) => {
   const { improve } = req.body.data;
   let submit = new Improvement();
-  for (const value of Object.keys(improve)) {
+  for (const value of Object.keys(submit)) {
     submit[value] = improve[value];
   }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
@@ -21,13 +20,12 @@ export default class MainPage extends React.Component {
     handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
     loadSyllabus = (load) => {
-        console.log(this.state.courseID);
         if (load) {
             fetch('/api/loadSyllabus?courseID=' + this.state.courseID)
                 .then((data) => data.json())
                 .then((res) => this.props.changeData(res.data))
                 .then(this.props.changeTab('CourseSyllabus'))
-                .then(console.log(this.props.getData));
+                .then(console.log(this.props.data));
         }
     };
 
