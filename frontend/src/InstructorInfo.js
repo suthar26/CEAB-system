@@ -9,9 +9,9 @@ export default class InstructorInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            checkbox: {government:false, industry:false, consulting:false, research:false, Other:false},
+            checkbox: { government: false, industry: false, consulting: false, research: false, Other: false },
             loadFirst: '',
-            loadFamilt: '',
+            loadFamily: '',
             familyName: '',
             firstName: '',
             acadRank: '',
@@ -40,39 +40,41 @@ export default class InstructorInfo extends React.Component {
     changeCheckbox = e => {
         let check = this.state.checkbox;
         check[e.target.value] = !this.state.checkbox[e.target.value]
-        this.setState({checkbox: check});
+        this.setState({ checkbox: check });
         console.log(this.state.checkbox);
     };
 
 
     loadInstructor = () => {
-        if (this.state.load) {
-            fetch('/api/loadInstructor?instructorName=' + this.state.load)
+        if (this.state.loadFirst && this.state.loadFamily) {
+            fetch('/api/loadInstructor?instructorFirstName=' + this.state.loadFirst + '&instructorFamilyName=' + this.state.loadFamily)
                 .then((data) => data.json())
                 .then((res) => this.setLoadValues(res.data))
         }
     };
 
     setLoadValues = (values) => {
-        for (const value of Object.keys(this.state)) {
-            if (value != 'loadFirst' && value != 'loadFamily' && value != 'checkbox') {
-                this.setState({ [value]: values[value] });
+        if (values != null && values != undefined) {
+            for (const value of Object.keys(this.state)) {
+                if (value != 'loadFirst' && value != 'loadFamily' && value != 'checkbox') {
+                    this.setState({ [value]: values[value] });
+                }
             }
+            this.state.checkbox = values.typeNonAcademicExp.split(",");
+            console.log(this.state);
         }
-        this.state.checkbox = values.typeNonAcademicExp.split(",");
-        console.log(this.state);
     }
 
     onSubmit = e => {
         e.preventDefault();
         let check = [];
-        for(const value of Object.keys(this.state.checkbox)){
-            if(this.state.checkbox[value])
+        for (const value of Object.keys(this.state.checkbox)) {
+            if (this.state.checkbox[value])
                 check.push(value);
         }
         this.state.typeNonAcademicExp = check.join();
         axios.post('/api/submitInstructor', {
-            data: this.state
+            info: this.state
         }).then(alert("Saved"));
         this.props.changeTab('MainPage');
     };
@@ -105,7 +107,7 @@ export default class InstructorInfo extends React.Component {
                     <input name="firstName" placeholder='First Name' value={this.state.firstName} onChange={e => this.change(e)} />&nbsp;&nbsp;
                 <br />
                     <label for="acadRank">Academic Rank:</label>
-                    <select id="acadRank" value={this.state.acadRank} onChange={e => this.change(e)}>
+                    <select id="acadRank" name="acadRank" value={this.state.acadRank} onChange={e => this.change(e)}>
                         <option value="full">Full</option>
                         <option value="assoc">Associate</option>
                         <option value="asst">Assistant</option>
@@ -117,7 +119,7 @@ export default class InstructorInfo extends React.Component {
                         <option value="other">Other</option>
                     </select>&nbsp;&nbsp;
                 <label for="hireDate">Hire Date:</label>
-                    <select id="hireDate" value={this.state.hireDate} onChange={e => this.change(e)}>
+                    <select id="hireDate" name="hireDate" value={this.state.hireDate} onChange={e => this.change(e)}>
                         <option value="<2011">&#60;2011</option>
                         <option value="2012">2012</option>
                         <option value="2013">2013</option>
@@ -131,7 +133,7 @@ export default class InstructorInfo extends React.Component {
                     </select>
                     <br />
                     <label for="highestDegree">Highest Degree:</label>
-                    <select id="highestDegree" value={this.state.highestDegree} onChange={e => this.change(e)}>
+                    <select id="highestDegree" name="highestDegree" value={this.state.highestDegree} onChange={e => this.change(e)}>
                         <option value="DPhil">DPhil</option>
                         <option value="DSc">DSc</option>
                         <option value="PhD">PhD</option>
@@ -145,7 +147,7 @@ export default class InstructorInfo extends React.Component {
                         <option value="Other">Other</option>
                     </select>&nbsp;&nbsp;
                 <label for="awardDate">Award Date:</label>
-                    <select id="awardDate" value={this.state.awardDate} onChange={e => this.change(e)}>
+                    <select id="awardDate" name="awardDate" value={this.state.awardDate} onChange={e => this.change(e)}>
                         <option value="<1970">&#60;1970</option>
                         <option value="1971">1971</option>
                         <option value="1972">1972</option>
@@ -200,7 +202,7 @@ export default class InstructorInfo extends React.Component {
                     </select>
                     <br />
                     <label for="awardingHEI">Awarding HEI:</label>
-                    <select id="awardingHEI" value={this.state.awardingHEI} onChange={e => this.change(e)}>
+                    <select id="awardingHEI" name="awardingHEI" value={this.state.awardingHEI} onChange={e => this.change(e)}>
                         <option value="BCIT">BCIT</option>
                         <option value="carleton">Carleton</option>
                         <option value="concordia">Concordia</option>
@@ -253,7 +255,7 @@ export default class InstructorInfo extends React.Component {
                         <option value="other">Other</option>
                     </select>&nbsp;&nbsp;
                 <label for="country">Country:</label>
-                    <select id="country" value={this.state.country} onChange={e => this.change(e)}>
+                    <select id="country" name="country" value={this.state.country} onChange={e => this.change(e)}>
                         <option value="argentina">Argentina</option>
                         <option value="australia">Australia</option>
                         <option value="austria">Austria</option>
@@ -316,7 +318,7 @@ export default class InstructorInfo extends React.Component {
                     </select>
                     <br />
                     <label for="licStatus">Lic. Status:</label>
-                    <select id="licStatus" value={this.state.licStatus} onChange={e => this.change(e)}>
+                    <select id="licStatus" name="licStatus" value={this.state.licStatus} onChange={e => this.change(e)}>
                         <option value="EIT">EIT</option>
                         <option value="ingJr">ingJr</option>
                         <option value="ing">ing</option>
@@ -326,7 +328,7 @@ export default class InstructorInfo extends React.Component {
                     </select>
                     <br />
                     <label for="awardingCA">Awarding HEI:</label>
-                    <select id="awardingHEI" value={this.state.awardingHEI} onChange={e => this.change(e)}>
+                    <select id="awardingHEI" name="awardingHEI" value={this.state.awardingHEI} onChange={e => this.change(e)}>
                         <option value="APEGA">APEGA</option>
                         <option value="APEGS">APEGS</option>
                         <option value="EGBC">Engineers Geoscientists British Columbia</option>
@@ -343,7 +345,7 @@ export default class InstructorInfo extends React.Component {
                     </select>
                     <br />
                     <label for="hqpSupervised">HQP Supervised Last 6 Years:</label>
-                    <select id="hireDate" value={this.state.hireDate} onChange={e => this.change(e)}>
+                    <select id="hqpSupervised" name="hqpSupervised" value={this.state.hireDate} onChange={e => this.change(e)}>
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -360,7 +362,7 @@ export default class InstructorInfo extends React.Component {
                     </select>
                     <br />
                     <label for="yearsNonAcademicExp">Years of Non-Academic Experience:</label>
-                    <select id="yearsNonAcademicExp" value={this.state.yearsNonAcademicExp} onChange={e => this.change(e)}>
+                    <select id="yearsNonAcademicExp" name="yearsNonAcademicExp" value={this.state.yearsNonAcademicExp} onChange={e => this.change(e)}>
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>

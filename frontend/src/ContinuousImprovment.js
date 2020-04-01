@@ -53,20 +53,24 @@ export default class ContinuousImprovment extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
+        console.log(this.state);
         axios.post('/api/submitImprovement', {
-            data: this.state
+            info: this.state
         }).then(alert("Saved"));
         this.props.changeTab('MainPage');
 
     };
 
     setLoadValues = (values) => {
-        for (const value of Object.keys(this.state)) {
-            if (value != 'load') {
-                this.setState({ [value]: values[value] });
+        if (values != null && values != undefined) {
+            for (const value of Object.keys(this.state)) {
+                if (value != 'load') {
+                    this.setState({ [value]: values[value] });
+                }
             }
+            console.log(this.state);
         }
-        console.log(this.state);
+
     }
 
     loadImprovement = () => {
@@ -89,7 +93,7 @@ export default class ContinuousImprovment extends React.Component {
                         aria-describedby="basic-addon2"
                     />
                     <InputGroup.Append>
-                        <Button variant="primary" onClick={() => this.loadSyllabus()}>Load Course</Button>
+                        <Button variant="primary" onClick={() => this.loadImprovement()}>Load Course</Button>
                     </InputGroup.Append>
                 </InputGroup>
                 <form style={{ backgroundColor: "#778899" }} autocomplete="on" onSubmit={this.handleSubmit}>
@@ -116,7 +120,7 @@ export default class ContinuousImprovment extends React.Component {
                         <div class="container-fluid">
                             <fieldset>
                                 <label for="gradeAchievedKB">Knowledge Base:</label>&nbsp;&nbsp;
-                            <select id="gradeAchievedKB" value={this.state.gradeAchievedKB} onChange={e => this.change(e)}>
+                            <select id="gradeAchievedKB" name="gradeAchievedKB" value={this.state.gradeAchievedKB} onChange={e => this.change(e)}>
                                     <option value="unsatisfactory">Unsatisfactory</option>
                                     <option value="developing">Developing</option>
                                     <option value="satisfactory">Satisfactory</option>
@@ -127,7 +131,7 @@ export default class ContinuousImprovment extends React.Component {
                                 <br />
 
                                 <label for="gradeAchievedPA">Problem Analysis:</label>&nbsp;&nbsp;
-                            <select id="gradeAchievedPA" value={this.state.gradeAchievedPA} onChange={e => this.change(e)}>
+                            <select id="gradeAchievedPA" name="gradeAchievedPA" value={this.state.gradeAchievedPA} onChange={e => this.change(e)}>
                                     <option value="unsatisfactory">Unsatisfactory</option>
                                     <option value="developing">Developing</option>
                                     <option value="satisfactory">Satisfactory</option>
@@ -138,7 +142,7 @@ export default class ContinuousImprovment extends React.Component {
                                 <br />
 
                                 <label for="gradeAchievedI">Investigation:</label>&nbsp;&nbsp;
-                            <select id="gradeAchievedI" value={this.state.gradeAchievedI} onChange={e => this.change(e)}> 
+                            <select id="gradeAchievedI" name="gradeAchievedI" value={this.state.gradeAchievedI} onChange={e => this.change(e)}>
                                     <option value="unsatisfactory">Unsatisfactory</option>
                                     <option value="developing">Developing</option>
                                     <option value="satisfactory">Satisfactory</option>
@@ -149,7 +153,7 @@ export default class ContinuousImprovment extends React.Component {
                                 <br />
 
                                 <label for="gradeAchievedD">Design:</label>&nbsp;&nbsp;
-                            <select id="gradeAchievedD" value={this.state.gradeAchievedD} onChange={e => this.change(e)}>
+                            <select id="gradeAchievedD" name="gradeAchievedD" value={this.state.gradeAchievedD} onChange={e => this.change(e)}>
                                     <option value="unsatisfactory">Unsatisfactory</option>
                                     <option value="developing">Developing</option>
                                     <option value="satisfactory">Satisfactory</option>
@@ -160,7 +164,7 @@ export default class ContinuousImprovment extends React.Component {
                                 <br />
 
                                 <label for="gradeAchievedUET">Use of Engineering Tools:</label>&nbsp;&nbsp;
-                            <select id="gradeAchievedUET" value={this.state.gradeAchievedUET} onChange={e => this.change(e)}>
+                            <select id="gradeAchievedUET" name="gradeAchievedUET" value={this.state.gradeAchievedUET} onChange={e => this.change(e)}>
                                     <option value="unsatisfactory">Unsatisfactory</option>
                                     <option value="developing">Developing</option>
                                     <option value="satisfactory">Satisfactory</option>
@@ -171,7 +175,7 @@ export default class ContinuousImprovment extends React.Component {
                                 <br />
 
                                 <label for="gradeAchievedITW">Individual and Team Work:</label>&nbsp;&nbsp;
-                            <select id="gradeAchievedITW" value={this.state.gradeAchievedITW} onChange={e => this.change(e)}>
+                            <select id="gradeAchievedITW" name="gradeAchievedITW" value={this.state.gradeAchievedITW} onChange={e => this.change(e)}>
                                     <option value="unsatisfactory">Unsatisfactory</option>
                                     <option value="developing">Developing</option>
                                     <option value="satisfactory">Satisfactory</option>
@@ -182,7 +186,7 @@ export default class ContinuousImprovment extends React.Component {
                                 <br />
 
                                 <label for="gradeAchievedCS">Communication Skills:</label>&nbsp;&nbsp;
-                            <select id="gradeAchievedCS" value={this.state.gradeAchievedCS} onChange={e => this.change(e)}>
+                            <select id="gradeAchievedCS" name="gradeAchievedCS" value={this.state.gradeAchievedCS} onChange={e => this.change(e)}>
                                     <option value="unsatisfactory">Unsatisfactory</option>
                                     <option value="developing">Developing</option>
                                     <option value="satisfactory">Satisfactory</option>
@@ -193,7 +197,7 @@ export default class ContinuousImprovment extends React.Component {
                                 <br />
 
                                 <label for="gradeAchievedP">Professionalism:</label>&nbsp;&nbsp;
-                            <select id="gradeAchievedP" value={this.state.gradeAchievedP} onChange={e => this.change(e)}>
+                            <select id="gradeAchievedP" name="gradeAchievedP" value={this.state.gradeAchievedP} onChange={e => this.change(e)}>
                                     <option value="unsatisfactory">Unsatisfactory</option>
                                     <option value="developing">Developing</option>
                                     <option value="satisfactory">Satisfactory</option>
@@ -204,7 +208,7 @@ export default class ContinuousImprovment extends React.Component {
                                 <br />
 
                                 <label for="gradeAchievedIESE">Impact of Engineering of Society and the Environment:</label>&nbsp;&nbsp;
-                            <select id="gradeAchievedIESE" value={this.state.gradeAchievedIESE} onChange={e => this.change(e)}>
+                            <select id="gradeAchievedIESE" name="gradeAchievedIESE" value={this.state.gradeAchievedIESE} onChange={e => this.change(e)}>
                                     <option value="unsatisfactory">Unsatisfactory</option>
                                     <option value="developing">Developing</option>
                                     <option value="satisfactory">Satisfactory</option>
@@ -215,7 +219,7 @@ export default class ContinuousImprovment extends React.Component {
                                 <br />
 
                                 <label for="gradeAchievedEE">Ethics and Equity:</label>&nbsp;&nbsp;
-                            <select id="gradeAchievedEE" value={this.state.gradeAchievedEE} onChange={e => this.change(e)}>
+                            <select id="gradeAchievedEE" name="gradeAchievedEE" value={this.state.gradeAchievedEE} onChange={e => this.change(e)}>
                                     <option value="unsatisfactory">Unsatisfactory</option>
                                     <option value="developing">Developing</option>
                                     <option value="satisfactory">Satisfactory</option>
@@ -226,7 +230,7 @@ export default class ContinuousImprovment extends React.Component {
                                 <br />
 
                                 <label for="gradeAchievedEPM">Economics and Project Management:</label>&nbsp;&nbsp;
-                            <select id="gradeAchievedEPM" value={this.state.gradeAchievedEPM} onChange={e => this.change(e)}>
+                            <select id="gradeAchievedEPM" name="gradeAchievedEPM" value={this.state.gradeAchievedEPM} onChange={e => this.change(e)}>
                                     <option value="unsatisfactory">Unsatisfactory</option>
                                     <option value="developing">Developing</option>
                                     <option value="satisfactory">Satisfactory</option>
@@ -237,7 +241,7 @@ export default class ContinuousImprovment extends React.Component {
                                 <br />
 
                                 <label for="gradeAchievedLLL">Life-Long Learning:</label>&nbsp;&nbsp;
-                            <select id="gradeAchievedLLL" value={this.state.gradeAchievedLLL} onChange={e => this.change(e)}>
+                            <select id="gradeAchievedLLL" name="gradeAchievedLLL" value={this.state.gradeAchievedLLL} onChange={e => this.change(e)}>
                                     <option value="unsatisfactory">Unsatisfactory</option>
                                     <option value="developing">Developing</option>
                                     <option value="satisfactory">Satisfactory</option>

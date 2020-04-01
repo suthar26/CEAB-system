@@ -11,7 +11,6 @@ import Col from 'react-bootstrap/Col';
 export default class CourseSyllabus extends React.Component {
     constructor(props) {
         super(props);
-        let variable = this.props.data;
 
         this.state = {
             load: '',
@@ -61,17 +60,19 @@ export default class CourseSyllabus extends React.Component {
     };
 
     setLoadValues = (values) => {
-        for (const value of Object.keys(this.state)) {
-            if(value!= 'load'){
-            this.setState({[value]:values[value]});
+        if (values != null && values != undefined) {
+            for (const value of Object.keys(this.state)) {
+                if (value != 'load') {
+                    this.setState({ [value]: values[value] });
+                }
             }
-          }
-          console.log(this.state);
+            console.log(this.state);
+        }
     }
 
     loadSyllabus = () => {
         if (this.state.load) {
-            fetch('/api/loadSyllabus?courseID=' + this.state.load)
+            fetch('/api/loadSyllabus?courseCode=' + this.state.load)
                 .then((data) => data.json())
                 .then((res) => this.setLoadValues(res.data))
         }

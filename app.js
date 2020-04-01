@@ -33,7 +33,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 router.get('/loadSyllabus', (req, res) => {
   code = req.query.courseCode;
   Course.findOne({courseCode: code},(err, data) => {
-    if(data.courseCode != null){
+    if(data != null){
       return res.json({ success: true, data: data });
     }
   });
@@ -41,8 +41,9 @@ router.get('/loadSyllabus', (req, res) => {
 
 router.get('/loadImprovement', (req, res) => {
   code = req.query.courseID;
-  Course.findOne({courseID: code},(err, data) => {
-    if(data.courseCode != null){
+  console.log(code);
+  Improvement.findOne({courseID: code},(err, data) => {
+    if(data != null){
       return res.json({ success: true, data: data });
     }
   });
@@ -60,7 +61,7 @@ router.get('/loadInstructor', (req, res) => {
   first = req.query.instructorFirstName;
   family = req.query.instructorFamilyName;
   Instructor.findOne({firstName: first, familyName: family},(err, data) => {
-    if(data.instructorName != null){
+    if(data != null){
       return res.json({ success: true, data: data });
     }
   });
@@ -68,9 +69,11 @@ router.get('/loadInstructor', (req, res) => {
 
 //
 router.post('/submitInstructor', (req, res) => {
-  const { instructor } = req.body.data;
+  let instructor = req.body.info;
   let submit = new Instructor();
-  for (const value of Object.keys(submit)) {
+  console.log(instructor)
+  for (const value of Object.keys(instructor)) {
+    console.log(value);
     submit[value] = instructor[value];
   }
   submit.save((err) => {
@@ -83,9 +86,11 @@ router.post('/submitInstructor', (req, res) => {
 router.post('/submitSyllabus', (req, res) => {
   let syllabus = req.body.courses;
   let submit = new Course();
-  for (const value of Object.keys(submit)) {
-    submit[value] = syllabus[value];
+  console.log(syllabus)
+  for (const value of Object.keys(syllabus)) {
+      submit[value] = syllabus[value];
   }
+  console.log(submit)
   submit.save((err) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
@@ -108,9 +113,9 @@ router.post('/submitSyllabus', (req, res) => {
 
 //
 router.post('/submitImprovement', (req, res) => {
-  const { improve } = req.body.data;
+  let improve = req.body.info;
   let submit = new Improvement();
-  for (const value of Object.keys(submit)) {
+  for (const value of Object.keys(improve)) {
     submit[value] = improve[value];
   }
 
