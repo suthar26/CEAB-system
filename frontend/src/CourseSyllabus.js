@@ -100,28 +100,28 @@ export default class CourseSyllabus extends React.Component {
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridCourseName">
                             <Form.Label><b>Course Name</b></Form.Label>
-                            <Form.Control type="text" name="courseName" value={this.state.courseName} placeholder="Enter Course Name" onChange={this.handleChange} />
+                            <Form.Control type="text" name="courseName" value={this.state.courseName} placeholder="Enter Course Name" required onChange={this.handleChange} />
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridCourseYear">
                             <Form.Label><b>Course Year</b></Form.Label>
-                            <Form.Control type="number" name="courseYear" value={this.state.courseYear} min="2000" placeholder="Enter Course Year" onChange={this.handleChange} />
+                            <Form.Control type="number" name="courseYear" value={this.state.courseYear} min="2000" placeholder="Enter Course Year" required onChange={this.handleChange} />
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridCourseCode">
                             <Form.Label><b>Course Code</b></Form.Label>
-                            <Form.Control type="text" name="courseCode" value={this.state.courseCode} placeholder="Enter Course Code" onChange={this.handleChange} />
+                            <Form.Control type="text" name="courseCode" value={this.state.courseCode} placeholder="Enter Course Code" required onChange={this.handleChange} />
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridInstructorName">
                             <Form.Label><b>Instructor Name</b></Form.Label>
-                            <Form.Control type="text" name="instructorName" value={this.state.instructorName} placeholder="Enter First & Last Name" onChange={this.handleChange} />
+                            <Form.Control type="text" name="instructorName" value={this.state.instructorName} placeholder="Enter First & Last Name" required onChange={this.handleChange} />
                         </Form.Group>
                     </Form.Row>
                     <br />
                     <Form.Group controlId="formGridLecture">
                         <Form.Label><b>Lecture Hours</b></Form.Label>
-                        <Form.Control type="number" name="lecHours" value={this.state.lecHours} min="1" step="any" placeholder="Enter Lecture hours per week" onChange={this.handleChange} />
+                        <Form.Control type="number" name="lecHours" value={this.state.lecHours} min="1" step="any" placeholder="Enter Lecture hours per week" required onChange={this.handleChange} />
                     </Form.Group>
 
                     <Form.Group controlId="formGridTutorial">
@@ -129,7 +129,7 @@ export default class CourseSyllabus extends React.Component {
                             <Form.Label><b>Tutorial Hours -</b></Form.Label>
                             <p>Enter 0 if no Tutorial</p>
                         </Form.Row>
-                        <Form.Control type="number" name="tutHours" value={this.state.tutHours} min="0" placeholder="Enter Tutorial hours per week" onChange={this.handleChange} />
+                        <Form.Control type="number" name="tutHours" value={this.state.tutHours} min="0" placeholder="Enter Tutorial hours per week" required onChange={this.handleChange} />
                     </Form.Group>
 
                     <Form.Group controlId="formGridLab">
@@ -137,7 +137,7 @@ export default class CourseSyllabus extends React.Component {
                             <Form.Label><b>Lab Hours -</b></Form.Label>
                             <p>Enter 0 if no Lab</p>
                         </Form.Row>
-                        <Form.Control type="number" name="labHours" value={this.state.labHours} min="0" placeholder="Enter Lab hours per week" onChange={this.handleChange} />
+                        <Form.Control type="number" name="labHours" value={this.state.labHours} min="0" placeholder="Enter Lab hours per week" required onChange={this.handleChange} />
                     </Form.Group>
                     <br />
                     <Form.Group controlId="formGridDescription">
@@ -145,7 +145,7 @@ export default class CourseSyllabus extends React.Component {
                             <InputGroup.Prepend>
                                 <InputGroup.Text><b>Course Description</b></InputGroup.Text>
                             </InputGroup.Prepend>
-                            <FormControl as="textarea" name="courseDescription" value={this.state.courseDescription} aria-label="With textarea" onChange={this.handleChange} />
+                            <FormControl as="textarea" name="courseDescription" value={this.state.courseDescription} aria-label="With textarea" required onChange={this.handleChange} />
                         </InputGroup>
                     </Form.Group>
                     <br />
@@ -255,7 +255,7 @@ export default class CourseSyllabus extends React.Component {
                                     <th><center>Basic Science</center></th>
                                     <th><center>Complementary Studies</center></th>
                                     <th><center>Engineering Science</center></th>
-                                    <th><center>Engineering Desgin</center></th>
+                                    <th><center>Engineering Design</center></th>
                                 </tr>
                             </thead>
                             <tbody>

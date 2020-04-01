@@ -102,9 +102,9 @@ export default class InstructorInfo extends React.Component {
                 </InputGroup>
                 <form style={divStyle} class="container" onSubmit={this.handleSubmit}>
                     <label for="familyName">Family Name:</label>
-                    <input name="familyName" placeholder='Family Name' value={this.state.familyName} onChange={e => this.change(e)} />&nbsp;&nbsp;
+                    <input name="familyName" placeholder='Family Name' required value={this.state.familyName} onChange={e => this.change(e)} />&nbsp;&nbsp;
                 <label for="firstName">First Name:</label>
-                    <input name="firstName" placeholder='First Name' value={this.state.firstName} onChange={e => this.change(e)} />&nbsp;&nbsp;
+                    <input name="firstName" placeholder='First Name' required value={this.state.firstName} onChange={e => this.change(e)} />&nbsp;&nbsp;
                 <br />
                     <label for="acadRank">Academic Rank:</label>
                     <select id="acadRank" name="acadRank" value={this.state.acadRank} onChange={e => this.change(e)}>

@@ -100,15 +100,15 @@ export default class ContinuousImprovment extends React.Component {
                     <div class="container-fluid">
                         <div class="form-group" style={{ float: "left" }}>
                             <label for="courseName"><b>Course Name:</b></label>
-                            <input name="courseName" type="text" id="courseName" placeholder='Course Name' class="form-control" value={this.state.courseName} onChange={e => this.change(e)} />
+                            <input name="courseName" type="text" id="courseName" placeholder='Course Name' class="form-control" required value={this.state.courseName} onChange={e => this.change(e)} />
                         </div>
                         <div class="form-group" style={{ float: "left", marginLeft: "10px" }}>
                             <label for="courseCode"><b>Course Code:</b></label>
-                            <input name="courseID" type="text" id="courseID" placeholder='Course Code' class="form-control" value={this.state.courseID} onChange={e => this.change(e)} />
+                            <input name="courseID" type="text" id="courseID" placeholder='Course Code' class="form-control" required value={this.state.courseID} onChange={e => this.change(e)} />
                         </div>
                         <div class="form-group" style={{ float: "left", marginLeft: "10px" }}>
                             <label for="courseCode"><b>Course Year:</b></label>
-                            <input name="courseYear" type="text" id="courseYear" placeholder='Course Year' class="form-control" value={this.state.courseYear} onChange={e => this.change(e)} />
+                            <input name="courseYear" type="text" id="courseYear" placeholder='Course Year' class="form-control" required value={this.state.courseYear} onChange={e => this.change(e)} />
                         </div>
                         <br />
                         <br />
@@ -254,7 +254,7 @@ export default class ContinuousImprovment extends React.Component {
                         </div>
                         <div>
                             <label for=""><b>Course Improvments:</b></label>
-                            <input name="CourseImprovments" type="text" id="CourseImprovments" placeholder='Please indicate what is going to be implimented in order to improve the area in which students achieved low performance' class="form-control" value={this.state.CourseImprovments} onChange={e => this.change(e)} />
+                            <input name="CourseImprovments" type="text" id="CourseImprovments" required placeholder='Please indicate what is going to be implimented in order to improve the area in which students achieved low performance' class="form-control" value={this.state.CourseImprovments} onChange={e => this.change(e)} />
                         </div>
                     </div>
                     <br />

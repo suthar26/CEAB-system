@@ -71,7 +71,11 @@ router.get('/loadInstructor', (req, res) => {
 router.post('/submitInstructor', (req, res) => {
   let instructor = req.body.info;
   let submit = new Instructor();
-  console.log(instructor)
+  Instructor.findOne({firstName: instructor.firstName, familyName: instructor.familyName},(err, data) => {
+    if(data != null){
+      submit = data;
+    }
+  });
   for (const value of Object.keys(instructor)) {
     console.log(value);
     submit[value] = instructor[value];
@@ -86,7 +90,11 @@ router.post('/submitInstructor', (req, res) => {
 router.post('/submitSyllabus', (req, res) => {
   let syllabus = req.body.courses;
   let submit = new Course();
-  console.log(syllabus)
+  Course.findOne({courseCode: syllabus.courseCode},(err, data) => {
+    if(data != null){
+      submit = data;
+    }
+  });
   for (const value of Object.keys(syllabus)) {
       submit[value] = syllabus[value];
   }
@@ -98,23 +106,14 @@ router.post('/submitSyllabus', (req, res) => {
 });
 
 //
-// router.post('/submitTable', (req, res) => {
-//   const { table } = req.body;
-//   let submit = new Data();
-//   for (const value in table) {
-//     submit[value] = table[value];
-//   }
-
-//   data.save((err) => {
-//     if (err) return res.json({ success: false, error: err });
-//     return res.json({ success: true });
-//   });
-// });
-
-//
 router.post('/submitImprovement', (req, res) => {
   let improve = req.body.info;
   let submit = new Improvement();
+  Improvement.findOne({courseCode: improve.courseCode},(err, data) => {
+    if(data != null){
+      submit = data;
+    }
+  });
   for (const value of Object.keys(improve)) {
     submit[value] = improve[value];
   }
