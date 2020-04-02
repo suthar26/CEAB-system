@@ -32,7 +32,7 @@ export default class MainPage extends React.Component {
         onClickHandler = () => {
             const data = new FormData()
             data.append('file', this.state.selectedFile)
-            axios.post('http://localhost:3001/api/upload', data)
+            axios.post('/api/upload', data)
                 .then((result) => {
                     console.log(result)
                 });
