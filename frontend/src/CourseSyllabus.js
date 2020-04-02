@@ -184,7 +184,7 @@ export default class CourseSyllabus extends React.Component {
                                 <tr>
                                     <td>Knowledge Base</td>
                                     <td><center><FormControl as="textarea" name="knowledgeInfo" value={this.state.knowledgeInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
-                                    <td><center><Form.Check type="radio" name="knowledgeGA" checked={this.state.knowledgeGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="knowledgeGA" checked={this.state.knowledgeGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="knowledgeGA" checked={this.state.knowledgeGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="knowledgeGA" checked={this.state.knowledgeGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>
                                 </tr>
