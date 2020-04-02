@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const Course = require('./Models/Course');
 const Improvement = require('./Models/Improvement');
 const Instructor = require('./Models/Instructor');
+const json2csv = require('json2csv').parse;
+const fs = require('fs');
+
 const API_PORT = process.env.PORT || 3001;
 const app = express();
 app.use(cors());
@@ -60,7 +63,7 @@ router.get('/loadInstructor', (req, res) => {
 
 //
 router.post('/submitInstructor', (req, res) => {
-  const { instructor } = req.body.data;
+  const instructor = req.body.data;
   let submit = new Instructor();
   for (const value of Object.keys(instructor)) {
     submit[value] = instructor[value];
@@ -100,7 +103,8 @@ router.post('/submitSyllabus', (req, res) => {
 
 //
 router.post('/submitImprovement', (req, res) => {
-  const { improve } = req.body.data;
+  console.log(req.body.data)
+  let  improve  = req.body.data;
   let submit = new Improvement();
   for (const value of Object.keys(improve)) {
     submit[value] = improve[value];
@@ -112,6 +116,46 @@ router.post('/submitImprovement', (req, res) => {
   });
 });
 
+//
+router.get('/downloadCourses', (req, res) => {
+  // const filePath = path.join(__dirname, "../../../", "public", "exports", "csv-" + dateTime + ".csv");
+  const filePath = path.join(__dirname, "public", "exports", "csv-" + "today" + ".csv");
+  const fields = [
+    'courseName','courseYear','courseCode','instructorName', 'lecHours' , 'tutHours', 'labHours','courseDescription',
+    'knowledgeGA','problemGA','investigationGA','designGA', 'engineeringToolsGA' , 'individualGA', 'communicationGA','professionalismGA',
+    'environmentGA','ethicsGA','economicsGA','learningGA', 'mathPerct' , 'basicSciPerct', 'studiesPerct','engSciPerct','engDesignPerct'
+  ];
+  let csv;
+  console.log("getting courses")
+  Course.find({}, (err,data)=>{
+    if (err) return res.json({ success: false, error: err });
+
+    try{
+      csv = json2csv(data,{fields});
+    } catch (error){
+      console.error(error);
+    }
+
+    fs.writeFile(filePath, csv, function (err) {
+      if (err) {
+          return res.json(err).status(500);
+      }
+      else {
+          setTimeout(function () {
+              fs.unlink(filePath, function (err) { // delete this file after 30 seconds
+              if (err) {
+                  console.error(err);
+              }
+              console.log('File has been Deleted');
+          });
+
+      }, 30000);
+          res.download(filePath);
+      }
+  })
+    // res.send(csv);
+  })
+});
 
 // append /api for our http requests
 app.use('/api', router);

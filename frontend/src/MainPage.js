@@ -60,6 +60,19 @@ export default class MainPage extends React.Component {
         }
 
     };
+    linkRef = React.createRef();
+    downloadFile = () => {
+            fetch('/api/downloadCourses')
+                .then(response => {
+                        response.blob().then(blob => {
+                            let url = window.URL.createObjectURL(blob);
+                            let a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'courses.csv';
+                            a.click();
+                        });
+                    })
+            }
 
     newPage = (tabName) => {
         this.props.changeData(null);
@@ -112,15 +125,8 @@ export default class MainPage extends React.Component {
 
                 <h1>Download Files </h1>
                 <InputGroup>
-                    <FormControl
-                        name="courseCode"
-                        onChange={this.handleChange}
-                        placeholder="Course Code"
-                        aria-label="Course Code"
-                        aria-describedby="basic-addon2"
-                    />
                     <InputGroup.Append>
-                        <Button variant="primary" onClick={() => this.loadCourse()}>New Course</Button>
+                        <Button variant="primary" onClick={() => this.downloadFile()} ref={this.linkRef}>Download Courses (.csv)</Button>
                     </InputGroup.Append>
                 </InputGroup>
             </div>
