@@ -173,7 +173,7 @@ router.get('/downloadCourses', (req, res) => {
 	const filePath = path.join(__dirname, "csv-" + "today" + ".csv");
 	const fields = [
 		'courseName', 'courseYear', 'courseCode', 'instructorName', 'lecHours', 'tutHours', 'labHours', 'courseDescription',
-		'knowledgeGA', 'knowledgeGAInfo', 'problemGA', 'problemInfo', 'investigationGA', 'investigationInfo', 'designGA', 'designInfo',
+		'knowledgeGA', 'knowledgeInfo', 'problemGA', 'problemInfo', 'investigationGA', 'investigationInfo', 'designGA', 'designInfo',
 		'engineeringToolsGA', 'engineeringToolsInfo', 'individualGA', 'individualInfo', 'communicationGA', 'communicationInfo',
 		'professionalismGA', 'professionalismInfo', 'environmentGA', 'environmentInfo', 'ethicsGA', 'ethicsInfo', 'economicsGA',
 		'economicsInfo', 'learningGA', 'learningInfo', 'mathPerct', 'basicSciPerct', 'studiesPerct', 'engSciPerct', 'engDesignPerct'
@@ -251,24 +251,14 @@ router.get('/downloadTable', (req, res) => {
 			test.economics.push({indicator: course.economicsInfo, level : course.economicsGA, code: course.courseCode});
 		})
 
-		// Object.keys(test).map()
-		// test.map((elem)=>{
-		// 	let level = elem.level;
-		// 	let code = elem.code;
-		// 	elem[level]=code;
-		// })
-
-
 		console.log(test)
 
-		// var csv = jsonFromCsv(test, {});
 
 		try {
 			csv = json2csv.parse(test);
 		} catch (error) {
 			console.error(error);
 		}
-		// res.send(csv)
 
 		fs.writeFile(filePath, csv, function (err) {
 			if (err) {
@@ -297,8 +287,32 @@ router.post('/upload', function (req, res) {
 		} else if (err) {
 			return res.status(500).json(err)
 		}
-		return res.status(200).send(req.file)
-
+		const csvFilePath=req.file.path;
+		const csv=require('csvtojson')
+		csv()
+		.fromFile(csvFilePath)
+		.then((jsonObj)=>{
+			jsonObj.forEach((elem)=>{
+				// let syllabus = req.body.courses;
+				let submit = new Course();
+				for (const value of Object.keys(elem)) {
+					submit[value] = elem[value];
+				}
+				Course.deleteMany({
+					courseCode: submit.courseCode
+				}, (err, data) => {
+					console.log(data);
+				});
+				submit.save((err) => {
+					if (err) return res.json({
+						success: false,
+						error: err
+					});
+				});
+				
+			})
+			return res.status(200).send(req.file)
+		})
 	})
 
 });
