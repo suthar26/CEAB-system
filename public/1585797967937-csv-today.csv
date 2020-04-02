@@ -1,0 +1,7 @@
+"courseName","courseYear","courseCode","instructorName","lecHours","tutHours","labHours","courseDescription","knowledgeGA","problemGA","investigationGA","designGA","engineeringToolsGA","individualGA","communicationGA","professionalismGA","environmentGA","ethicsGA","economicsGA","learningGA","mathPerct","basicSciPerct","studiesPerct","engSciPerct","engDesignPerct"
+"ml","","","","","","","","","","","","","","","","","","","","","","","",""
+"abcde","","","","","","","","","","","","","","","","","","","","","","","",""
+"machine","2010","abc123","jsfkd; fshdkjl; ","2","2","2","sdafsd","introductory","","","","","","","","","","","","100","","","",""
+"software","2020","SOFE777","Savan Patel","3","3","3","This is a software course by Savan Patel.","introductory","introductory","introductory","introductory","introductory","introductory","introductory","introductory","introductory","introductory","introductory","introductory","20","20","20","20","20"
+"cloud","2015","abcde","abc def","2","1","1","hello","introductory","intermediate","advanced","intermediate","introductory","intermediate","advanced","intermediate","introductory","","","","30","20","30","20",""
+"software","2020","SOFE777","Savan Patel","3","3","3","This is a software course by Savan Patel.","intermediate","introductory","introductory","introductory","introductory","introductory","introductory","introductory","introductory","introductory","introductory","advanced","0","20","20","20","20"

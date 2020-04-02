@@ -7,6 +7,8 @@ const Improvement = require('./Models/Improvement');
 const Instructor = require('./Models/Instructor');
 const json2csv = require('json2csv').parse;
 const fs = require('fs');
+const multer = require('multer');
+const uuidv4 = require('uuid/v4');
 
 const API_PORT = process.env.PORT || 3001;
 const app = express();
@@ -31,6 +33,17 @@ db.once('open', () => console.log('connected to the database'));
 
 // checks if connection with the database is successful
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+//for uploading csv
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+  cb(null, 'public')
+},
+filename: function (req, file, cb) {
+  cb(null, Date.now() + '-' +file.originalname )
+}
+})// create the multer instance that will be used to upload/save the file
+var upload = multer({ storage: storage }).single('file')
 
 //
 router.get('/loadSyllabus', (req, res) => {
@@ -157,8 +170,21 @@ router.get('/downloadCourses', (req, res) => {
           res.download(filePath);
       }
   })
-    // res.send(csv);
   })
+});
+
+router.post('/upload',function(req, res) {
+     console.log("uploading...")
+  upload(req, res, function (err) {
+         if (err instanceof multer.MulterError) {
+             return res.status(500).json(err)
+         } else if (err) {
+             return res.status(500).json(err)
+         }
+    return res.status(200).send(req.file)
+
+  })
+
 });
 
 // append /api for our http requests
