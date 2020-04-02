@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const improvementSchema = new Schema(
     {
         courseName: String,
-        courseCode: String,
+        courseID: String,
         courseYear: String,
         graduateAttribute: String,
         graduateAttributeAchieved: String,
@@ -20,6 +20,18 @@ const improvementSchema = new Schema(
         howAchievedEE: String,
         howAchievedEPM: String,
         howAchievedLLL: String,
+        gradeAchievedKB: String,
+        gradeAchievedPA: String,
+        gradeAchievedI: String,
+        gradeAchievedD: String,
+        gradeAchievedUET: String,
+        gradeAchievedITW: String,
+        gradeAchievedCS: String,
+        gradeAchievedP: String,
+        gradeAchievedIESE: String,
+        gradeAchievedEE: String,
+        gradeAchievedEPM: String,
+        gradeAchievedLLL: String,
         CourseImprovments: String
     }
 );

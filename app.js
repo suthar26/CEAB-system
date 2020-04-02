@@ -31,12 +31,21 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 //
 router.get('/loadSyllabus', (req, res) => {
-  code = req.courseID;
-  Course.findOne({'id': code},(err, data) => {
-    if(data.id == code){
+  code = req.query.courseCode;
+  Course.findOne({courseCode: code},(err, data) => {
+    if(data != null){
       return res.json({ success: true, data: data });
     }
-    return err;
+  });
+});
+
+router.get('/loadImprovement', (req, res) => {
+  code = req.query.courseID;
+  console.log(code);
+  Improvement.findOne({courseID: code},(err, data) => {
+    if(data != null){
+      return res.json({ success: true, data: data });
+    }
   });
 });
 
@@ -49,20 +58,26 @@ router.get('/loadSyllabus', (req, res) => {
 
 //
 router.get('/loadInstructor', (req, res) => {
-  code = req.instructorName;
-  Instructor.findOne({'id': code},(err, data) => {
-    if(data.id == code){
+  first = req.query.instructorFirstName;
+  family = req.query.instructorFamilyName;
+  Instructor.findOne({firstName: first, familyName: family},(err, data) => {
+    if(data != null){
       return res.json({ success: true, data: data });
     }
-    return err;
   });
 });
 
 //
 router.post('/submitInstructor', (req, res) => {
-  const { instructor } = req.body.data;
+  let instructor = req.body.info;
   let submit = new Instructor();
+  Instructor.findOne({firstName: instructor.firstName, familyName: instructor.familyName},(err, data) => {
+    if(data != null){
+      submit = data;
+    }
+  });
   for (const value of Object.keys(instructor)) {
+    console.log(value);
     submit[value] = instructor[value];
   }
   submit.save((err) => {
@@ -75,9 +90,15 @@ router.post('/submitInstructor', (req, res) => {
 router.post('/submitSyllabus', (req, res) => {
   let syllabus = req.body.courses;
   let submit = new Course();
+  Course.findOne({courseCode: syllabus.courseCode},(err, data) => {
+    if(data != null){
+      submit = data;
+    }
+  });
   for (const value of Object.keys(syllabus)) {
-    submit[value] = syllabus[value];
+      submit[value] = syllabus[value];
   }
+  console.log(submit)
   submit.save((err) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
@@ -85,23 +106,14 @@ router.post('/submitSyllabus', (req, res) => {
 });
 
 //
-// router.post('/submitTable', (req, res) => {
-//   const { table } = req.body;
-//   let submit = new Data();
-//   for (const value in table) {
-//     submit[value] = table[value];
-//   }
-
-//   data.save((err) => {
-//     if (err) return res.json({ success: false, error: err });
-//     return res.json({ success: true });
-//   });
-// });
-
-//
 router.post('/submitImprovement', (req, res) => {
-  const { improve } = req.body.data;
+  let improve = req.body.info;
   let submit = new Improvement();
+  Improvement.findOne({courseCode: improve.courseCode},(err, data) => {
+    if(data != null){
+      submit = data;
+    }
+  });
   for (const value of Object.keys(improve)) {
     submit[value] = improve[value];
   }
