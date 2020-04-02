@@ -41,16 +41,10 @@ export default class MainPage extends React.Component {
     render() {
         return (
             <div class="container" >
-
                 <h1>Upload Files</h1>
                 <input type="file" name="file" onChange={this.onChangeHandler} />
-
                 <h1>Download Files </h1>
-                <InputGroup>
-                    <InputGroup.Append>
-                        <Button variant="primary" onClick={() => this.downloadFile()} ref={this.linkRef}>Download Courses (.csv)</Button>
-                    </InputGroup.Append>
-                </InputGroup>
+                <Button variant="primary" onClick={() => this.downloadFile()} ref={this.linkRef}>Download Courses (.csv)</Button>
             </div>
         )
     }
