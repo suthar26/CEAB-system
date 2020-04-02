@@ -293,7 +293,6 @@ router.post('/upload', function (req, res) {
 		.fromFile(csvFilePath)
 		.then((jsonObj)=>{
 			jsonObj.forEach((elem)=>{
-				// let syllabus = req.body.courses;
 				let submit = new Course();
 				for (const value of Object.keys(elem)) {
 					submit[value] = elem[value];
