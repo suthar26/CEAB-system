@@ -73,7 +73,7 @@ export default class MainPage extends React.Component {
             })
     }
     linkRef = React.createRef();
-    downloadFile = () => {
+    downloadCourses = () => {
             fetch('/api/downloadCourses')
                 .then(response => {
                         response.blob().then(blob => {
@@ -81,6 +81,18 @@ export default class MainPage extends React.Component {
                             let a = document.createElement('a');
                             a.href = url;
                             a.download = 'courses.csv';
+                            a.click();
+                        });
+                    })
+            }
+    downloadTable = () => {
+            fetch('/api/downloadTable')
+                .then(response => {
+                        response.blob().then(blob => {
+                            let url = window.URL.createObjectURL(blob);
+                            let a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'table3.2.1-helper.csv';
                             a.click();
                         });
                     })
@@ -109,7 +121,9 @@ export default class MainPage extends React.Component {
                     />
                     <Button variant='primary' onClick={this.onClickHandler}>Upload</Button> 
                  <h1>Download Files </h1>
-                <Button variant="primary" onClick={() => this.downloadFile()} ref={this.linkRef}>Download Courses (.csv)</Button>
+                <Button variant="primary" onClick={() => this.downloadCourses()} ref={this.linkRef}>Download Courses (.csv)</Button>
+                <br></br>
+                <Button variant="primary" onClick={() => this.downloadTable()} ref={this.linkRef}>Download Table Helper (.csv)</Button>
             </div>
         )
     }
