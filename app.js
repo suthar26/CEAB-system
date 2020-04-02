@@ -39,7 +39,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 //for uploading csv
 var storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, 'public')
+		cb(null,'.')
 	},
 	filename: function (req, file, cb) {
 		cb(null, Date.now() + '-' + file.originalname)
