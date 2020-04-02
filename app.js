@@ -34,40 +34,53 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 //
 router.get('/loadSyllabus', (req, res) => {
-  code = req.courseID;
-  Course.findOne({'id': code},(err, data) => {
-    if(data.id == code){
+  code = req.query.courseCode;
+  Course.findOne({ courseCode: code }, (err, data) => {
+    if (data != null) {
       return res.json({ success: true, data: data });
     }
-    return err;
+  });
+});
+
+router.get('/loadImprovement', (req, res) => {
+  code = req.query.courseID;
+  console.log(code);
+  Improvement.findOne({ courseID: code }, (err, data) => {
+    if (data != null) {
+      return res.json({ success: true, data: data });
+    }
   });
 });
 
 //
-  // router.get('/loadTable', (req, res) => {
-  //   Data.findOne({'id': 'Table3_1_2'},(err, data) => {
-  //     return res.json({ success: true, data: data });
-  //   });
-  // });
+// router.get('/loadTable', (req, res) => {
+//   Data.findOne({'id': 'Table3_1_2'},(err, data) => {
+//     return res.json({ success: true, data: data });
+//   });
+// });
 
 //
 router.get('/loadInstructor', (req, res) => {
-  code = req.instructorName;
-  Instructor.findOne({'id': code},(err, data) => {
-    if(data.id == code){
+  first = req.query.instructorFirstName;
+  family = req.query.instructorFamilyName;
+  Instructor.findOne({ firstName: first, familyName: family }, (err, data) => {
+    if (data != null) {
       return res.json({ success: true, data: data });
     }
-    return err;
   });
 });
 
 //
 router.post('/submitInstructor', (req, res) => {
-  const instructor = req.body.data;
+  let instructor = req.body.info;
   let submit = new Instructor();
   for (const value of Object.keys(instructor)) {
+    console.log(value);
     submit[value] = instructor[value];
   }
+  Instructor.deleteMany({firstName: first, familyName: family}, (err, data) => {
+    console.log(data);
+  });
   submit.save((err) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
@@ -81,6 +94,10 @@ router.post('/submitSyllabus', (req, res) => {
   for (const value of Object.keys(syllabus)) {
     submit[value] = syllabus[value];
   }
+  console.log(submit)
+  Course.deleteMany({courseCode: submit.courseCode}, (err, data) => {
+    console.log(data);
+  });
   submit.save((err) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
@@ -88,28 +105,15 @@ router.post('/submitSyllabus', (req, res) => {
 });
 
 //
-// router.post('/submitTable', (req, res) => {
-//   const { table } = req.body;
-//   let submit = new Data();
-//   for (const value in table) {
-//     submit[value] = table[value];
-//   }
-
-//   data.save((err) => {
-//     if (err) return res.json({ success: false, error: err });
-//     return res.json({ success: true });
-//   });
-// });
-
-//
 router.post('/submitImprovement', (req, res) => {
-  console.log(req.body.data)
-  let  improve  = req.body.data;
+  let improve = req.body.info;
   let submit = new Improvement();
   for (const value of Object.keys(improve)) {
     submit[value] = improve[value];
   }
-
+  Improvement.deleteMany({courseID: submit.courseID}, (err, data) => {
+    console.log(data);
+  });
   submit.save((err) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true });
