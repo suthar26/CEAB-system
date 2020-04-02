@@ -107,7 +107,7 @@ export default class MainPage extends React.Component {
                     placeholder='UploadCSV...'
                     onChange={this.onChange}
                     />
-                    <button type="button" class="btn btn-success btn-block" onClick={this.onClickHandler}>Upload</button> 
+                    <Button variant='primary' onClick={this.onClickHandler}>Upload</Button> 
                  <h1>Download Files </h1>
                 <Button variant="primary" onClick={() => this.downloadFile()} ref={this.linkRef}>Download Courses (.csv)</Button>
             </div>

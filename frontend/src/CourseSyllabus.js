@@ -23,17 +23,29 @@ export default class CourseSyllabus extends React.Component {
             labHours: '',
             courseDescription: '',
             knowledgeGA: '',
+            knowledgeInfo: '',
             problemGA: '',
+            problemInfo: '',
             investigationGA: '',
+            investigationInfo: '',
             designGA: '',
+            designInfo: '',
             engineeringToolsGA: '',
+            engineeringToolsInfo: '',
             individualGA: '',
+            individualInfo: '',
             communicationGA: '',
+            communicationInfo: '',
             professionalismGA: '',
+            professionalismInfo: '',
             environmentGA: '',
+            environmentInfo: '',
             ethicsGA: '',
+            ethicsInfo: '',
             economicsGA: '',
+            economicsInfo: '',
             learningGA: '',
+            learningInfo: '',
             mathPerct: '',
             basicSciPerct: '',
             studiesPerct: '',
@@ -157,9 +169,11 @@ export default class CourseSyllabus extends React.Component {
                             <thead>
                                 <tr>
                                     <th>Attributes</th>
+                                    <th><center>Learning Activities</center></th>
                                     <th colSpan="3"><center>Levels</center></th>
                                 </tr>
                                 <tr>
+                                    <th></th>
                                     <th></th>
                                     <th><center>Introductory</center></th>
                                     <th><center>Intermediate</center></th>
@@ -169,72 +183,84 @@ export default class CourseSyllabus extends React.Component {
                             <tbody>
                                 <tr>
                                     <td>Knowledge Base</td>
-                                    <td><center><Form.Check type="radio" name="knowledgeGA" checked={this.state.knowledgeGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
+                                    <td><center><FormControl as="textarea" name="knowledgeInfo" value={this.state.knowledgeInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
+                                    <td><center><Form.Check type="radio" name="knowledgeGA" checked={this.state.knowledgeGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="knowledgeGA" checked={this.state.knowledgeGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="knowledgeGA" checked={this.state.knowledgeGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>
                                 </tr>
                                 <tr>
                                     <td>Problem Analysis</td>
+                                    <td><center><FormControl as="textarea" name="problemInfo" value={this.state.problemInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="problemGA" checked={this.state.problemGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="problemGA" checked={this.state.problemGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="problemGA" checked={this.state.problemGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>
                                 </tr>
                                 <tr>
                                     <td>Investigation</td>
+                                    <td><center><FormControl as="textarea" name="investigationInfo" value={this.state.investigationInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="investigationGA" checked={this.state.investigationGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="investigationGA" checked={this.state.investigationGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="investigationGA" checked={this.state.investigationGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>
                                 </tr>
                                 <tr>
                                     <td>Design</td>
+                                    <td><center><FormControl as="textarea" name="designInfo" value={this.state.designInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="designGA" checked={this.state.designGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="designGA" checked={this.state.designGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="designGA" checked={this.state.designGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>
                                 </tr>
                                 <tr>
                                     <td>Use of Engineering Tools</td>
+                                    <td><center><FormControl as="textarea" name="engineeringToolsInfo" value={this.state.engineeringToolsInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="engineeringToolsGA" checked={this.state.engineeringToolsGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="engineeringToolsGA" checked={this.state.engineeringToolsGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="engineeringToolsGA" checked={this.state.engineeringToolsGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>
                                 </tr>
                                 <tr>
                                     <td>Individual and Team Work</td>
+                                    <td><center><FormControl as="textarea" name="invidualInfo" value={this.state.invidualInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="individualGA" checked={this.state.individualGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="individualGA" checked={this.state.individualGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="individualGA" checked={this.state.individualGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>
                                 </tr>
                                 <tr>
                                     <td>Communication Skills</td>
+                                    <td><center><FormControl as="textarea" name="communicationInfo" value={this.state.communicationInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="communicationGA" checked={this.state.communicationGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="communicationGA" checked={this.state.communicationGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="communicationGA" checked={this.state.communicationGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>
                                 </tr>
                                 <tr>
                                     <td>Professionalism</td>
+                                    <td><center><FormControl as="textarea" name="professionalismInfo" value={this.state.professionalismInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="professionalismGA" checked={this.state.professionalismGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="professionalismGA" checked={this.state.professionalismGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="professionalismGA" checked={this.state.professionalismGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>
                                 </tr>
                                 <tr>
                                     <td>Impact of Engineering of Society and Environment</td>
+                                    <td><center><FormControl as="textarea" name="environmentInfo" value={this.state.environmentInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="environmentGA" checked={this.state.environmentGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="environmentGA" checked={this.state.environmentGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="environmentGA" checked={this.state.environmentGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>
                                 </tr>
                                 <tr>
                                     <td>Ethics and Equity</td>
+                                    <td><center><FormControl as="textarea" name="ethicsInfo" value={this.state.ethicsInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="ethicsGA" checked={this.state.ethicsGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="ethicsGA" checked={this.state.ethicsGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="ethicsGA" checked={this.state.ethicsGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>
                                 </tr>
                                 <tr>
                                     <td>Economics and Project Management</td>
+                                    <td><center><FormControl as="textarea" name="economicsInfo" value={this.state.economicsInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="economicsGA" checked={this.state.economicsGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="economicsGA" checked={this.state.economicsGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="economicsGA" checked={this.state.economicsGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>
                                 </tr>
                                 <tr>
                                     <td>Life-Long Learning</td>
+                                    <td><center><FormControl as="textarea" name="learningInfo" value={this.state.learningInfo} aria-label="With textarea" required onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="learningGA" checked={this.state.learningGA == 'introductory'} value="introductory" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="learningGA" checked={this.state.learningGA == 'intermediate'} value="intermediate" onChange={this.handleChange} /></center></td>
                                     <td><center><Form.Check type="radio" name="learningGA" checked={this.state.learningGA == 'advanced'} value="advanced" onChange={this.handleChange} /></center></td>

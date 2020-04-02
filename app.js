@@ -136,11 +136,13 @@ router.post('/submitImprovement', (req, res) => {
 //
 router.get('/downloadCourses', (req, res) => {
   // const filePath = path.join(__dirname, "../../../", "public", "exports", "csv-" + dateTime + ".csv");
-  const filePath = path.join(__dirname, "public", "exports", "csv-" + "today" + ".csv");
+  const filePath = path.join(__dirname, "csv-" + "today" + ".csv");
   const fields = [
     'courseName','courseYear','courseCode','instructorName', 'lecHours' , 'tutHours', 'labHours','courseDescription',
-    'knowledgeGA','problemGA','investigationGA','designGA', 'engineeringToolsGA' , 'individualGA', 'communicationGA','professionalismGA',
-    'environmentGA','ethicsGA','economicsGA','learningGA', 'mathPerct' , 'basicSciPerct', 'studiesPerct','engSciPerct','engDesignPerct'
+    'knowledgeGA', 'knowledgeGAInfo', 'problemGA', 'problemInfo', 'investigationGA', 'investigationInfo', 'designGA', 'designInfo',
+    'engineeringToolsGA', 'engineeringToolsInfo', 'individualGA', 'individualInfo','communicationGA','communicationInfo',
+    'professionalismGA', 'professionalismInfo','environmentGA', 'environmentInfo', 'ethicsGA', 'ethicsInfo','economicsGA', 
+    'economicsInfo','learningGA', 'learningInfo', 'mathPerct' , 'basicSciPerct', 'studiesPerct','engSciPerct','engDesignPerct'
   ];
   let csv;
   console.log("getting courses")
