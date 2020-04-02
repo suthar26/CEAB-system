@@ -332,7 +332,7 @@ export default class InstructorInfo extends React.Component {
                     </select>
                     <br />
                     <label for="awardingCA">Awarding CA:</label>
-                    <select id="awardingCA" name="awardingCA" value={this.state.awardingHEI} onChange={e => this.change(e)}>
+                    <select id="awardingCA" name="awardingCA" value={this.state.awardingCA} onChange={e => this.change(e)}>
                         <option value="APEGA">APEGA</option>
                         <option value="APEGS">APEGS</option>
                         <option value="EGBC">Engineers Geoscientists British Columbia</option>
