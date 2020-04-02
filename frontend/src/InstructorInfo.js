@@ -60,8 +60,12 @@ export default class InstructorInfo extends React.Component {
                     this.setState({ [value]: values[value] });
                 }
             }
-            this.state.checkbox = values.typeNonAcademicExp.split(",");
-            console.log(this.state);
+            let checklist = { government: false, industry: false, consulting: false, research: false, Other: false };
+            let check = values.typeNonAcademicExp.split(",");
+            for (const value of check) {
+                checklist[value] = true;
+            }
+            this.setState({checkbox: checklist});
         }
     }
 
@@ -327,8 +331,8 @@ export default class InstructorInfo extends React.Component {
                         <option value="None">None</option>
                     </select>
                     <br />
-                    <label for="awardingCA">Awarding HEI:</label>
-                    <select id="awardingHEI" name="awardingHEI" value={this.state.awardingHEI} onChange={e => this.change(e)}>
+                    <label for="awardingCA">Awarding CA:</label>
+                    <select id="awardingCA" name="awardingCA" value={this.state.awardingHEI} onChange={e => this.change(e)}>
                         <option value="APEGA">APEGA</option>
                         <option value="APEGS">APEGS</option>
                         <option value="EGBC">Engineers Geoscientists British Columbia</option>
@@ -345,7 +349,7 @@ export default class InstructorInfo extends React.Component {
                     </select>
                     <br />
                     <label for="hqpSupervised">HQP Supervised Last 6 Years:</label>
-                    <select id="hqpSupervised" name="hqpSupervised" value={this.state.hireDate} onChange={e => this.change(e)}>
+                    <select id="hqpSupervised" name="hqpSupervised" value={this.state.hqpSupervised} onChange={e => this.change(e)}>
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
