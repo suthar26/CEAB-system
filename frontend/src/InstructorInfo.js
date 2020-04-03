@@ -1,11 +1,16 @@
+//CEAB Helper app to assist with making the documents required to be an accredited for engineering
+//Group 3
+//3/4/20
+
 import React from 'react';
 import axios from 'axios';
-import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 
 export default class InstructorInfo extends React.Component {
+
+    //constructor that creates the state and binds the submit and update methods
     constructor(props) {
         super(props);
         this.state = {
@@ -30,13 +35,14 @@ export default class InstructorInfo extends React.Component {
         this.handleSubmit = this.onSubmit.bind(this);
     }
 
-    //gets the values entered by user and set it state variables above
+    //gets the values entered by user and sets it the corresponding state variable
     change = e => {
         this.setState(
             { [e.target.name]: e.target.value });
         console.log(this.state);
     };
 
+    //updates the value of the checkbox object based on the given checkbox component
     changeCheckbox = e => {
         let check = this.state.checkbox;
         check[e.target.value] = !this.state.checkbox[e.target.value]
@@ -45,6 +51,7 @@ export default class InstructorInfo extends React.Component {
     };
 
 
+    //calls api to get previously stored info given the course code
     loadInstructor = () => {
         if (this.state.loadFirst && this.state.loadFamily) {
             fetch('/api/loadInstructor?instructorFirstName=' + this.state.loadFirst + '&instructorFamilyName=' + this.state.loadFamily)
@@ -53,6 +60,7 @@ export default class InstructorInfo extends React.Component {
         }
     };
 
+    //assigns all the given values to the state
     setLoadValues = (values) => {
         if (values != null && values != undefined) {
             for (const value of Object.keys(this.state)) {
@@ -69,6 +77,7 @@ export default class InstructorInfo extends React.Component {
         }
     }
 
+    //calls api with post request to save the form, and then reloads to the main page
     onSubmit = e => {
         e.preventDefault();
         let check = [];
@@ -82,6 +91,8 @@ export default class InstructorInfo extends React.Component {
         }).then(alert("Saved"));
         this.props.changeTab('MainPage');
     };
+
+    //renders instructor info tab
     render() {
         return (
             <div class="container">

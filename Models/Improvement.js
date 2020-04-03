@@ -1,6 +1,11 @@
+//CEAB Helper app to assist with making the documents required to be an accredited for engineering
+//Group 3
+//3/4/20
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//db data structure for Improvement
 const improvementSchema = new Schema(
     {
         courseName: String,
@@ -38,5 +43,6 @@ const improvementSchema = new Schema(
 
 let Improvement = mongoose.model("Improvement", improvementSchema , "improvements");
 
+// export the new Schema so we could modify it using Node.js
 module.exports = Improvement;
 

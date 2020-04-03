@@ -1,3 +1,7 @@
+//CEAB Helper app to assist with making the documents required to be an accredited for engineering
+//Group 3
+//3/4/20
+
 const mongoose = require('mongoose');
 const express = require('express');
 var cors = require('cors');
@@ -6,7 +10,6 @@ const Course = require('./Models/Course');
 const Improvement = require('./Models/Improvement');
 const Instructor = require('./Models/Instructor');
 const json2csv = require('json2csv');
-const jsonFromCsv = require('csvjson-json2csv');
 const fs = require('fs');
 const multer = require('multer');
 
@@ -49,7 +52,7 @@ var upload = multer({
 	storage: storage
 }).single('file')
 
-//
+//get method that calls db to get syllabus of the given course code
 router.get('/loadSyllabus', (req, res) => {
 	code = req.query.courseCode;
 	Course.findOne({
@@ -64,6 +67,7 @@ router.get('/loadSyllabus', (req, res) => {
 	});
 });
 
+//get method that calls db to get improvements of the given course id
 router.get('/loadImprovement', (req, res) => {
 	code = req.query.courseID;
 	console.log(code);
@@ -80,6 +84,7 @@ router.get('/loadImprovement', (req, res) => {
 });
 
 
+//get method that calls db to get instructor with the given name
 router.get('/loadInstructor', (req, res) => {
 	first = req.query.instructorFirstName;
 	family = req.query.instructorFamilyName;
@@ -96,7 +101,7 @@ router.get('/loadInstructor', (req, res) => {
 	});
 });
 
-//
+//post method that delets any data with the given name, and submits a new instructor entry
 router.post('/submitInstructor', (req, res) => {
 	let instructor = req.body.info;
 	let submit = new Instructor();
@@ -121,7 +126,7 @@ router.post('/submitInstructor', (req, res) => {
 	});
 });
 
-//
+//post method that delets any data with the given course code, and submits a new syllabus entry
 router.post('/submitSyllabus', (req, res) => {
 	let syllabus = req.body.courses;
 	let submit = new Course();
@@ -145,7 +150,7 @@ router.post('/submitSyllabus', (req, res) => {
 	});
 });
 
-//
+//post method that delets any data with the given course id, and submits a new improvement entry
 router.post('/submitImprovement', (req, res) => {
 	let improve = req.body.info;
 	let submit = new Improvement();
@@ -168,7 +173,7 @@ router.post('/submitImprovement', (req, res) => {
 	});
 });
 
-//
+//get method that calls the db for courses and constructs a csv file
 router.get('/downloadCourses', (req, res) => {
 	const filePath = path.join(__dirname, "csv-" + "today" + ".csv");
 	const fields = [
@@ -212,6 +217,8 @@ router.get('/downloadCourses', (req, res) => {
 		})
 	})
 });
+
+//get method that calls the db for the course info and constructs the csv for table 3.1.2
 router.get('/downloadTable', (req, res) => {
 	const filePath = path.join(__dirname, "csv-" + "table" + ".csv");
 	const fields = [
@@ -279,6 +286,8 @@ router.get('/downloadTable', (req, res) => {
 	})
 });
 
+
+//post method that deconstructs the given csv and updates courses
 router.post('/upload', function (req, res) {
 	console.log("uploading...")
 	upload(req, res, function (err) {

@@ -1,3 +1,7 @@
+//CEAB Helper app to assist with making the documents required to be an accredited for engineering
+//Group 3
+//3/4/20
+
 import React from 'react';
 
 //Renders navbar
@@ -12,8 +16,8 @@ class Navbar extends React.Component {
                 <div class="collapse navbar-collapse" id="navbar">
                     <div class="navbar-nav">
                         <a class="nav-item nav-link" href='#' onClick={() => {this.props.changeTab('MainPage')}}>Main Page</a>
+                        <a class="nav-item nav-link" href='#' onClick={() => {this.props.changeTab('LoadDocuments')}}>Load Documents</a>
                         <a class="nav-item nav-link" href='#' onClick={() => {this.props.changeTab('CourseSyllabus')}}>Course Syllabus</a>
-                        {/* <a class="nav-item nav-link" href='#' onClick={() => {this.props.changeTab('Table3_1_2'); this.props.changeData(null)}}>Table 3.1.2</a> */}
                         <a class="nav-item nav-link" href='#' onClick={() => {this.props.changeTab('InstructorInfo')}}>Instructor Info</a>
                         <a class="nav-item nav-link" href='#' onClick={() => {this.props.changeTab('ContinuousImprovment')}}>Continuous Improvment</a>
                     </div>
