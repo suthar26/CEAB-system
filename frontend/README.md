@@ -1,29 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Running the App locally
-
-### `npm install`
-Installs the requried node libraries
-
-In the root project directory, you can run:
-
-### `npm run devstart`
-Runs the app in development mode (http://localhost:3000) to view it in the browser.
-
-
-## Deploying to Heroku
-
-### `Step 1: install Heroku cli`
-### `Step 2: Create the .env file, inside your root directory. Define the application port in it`
-### `Step 3: Create Procfile`
-### `Step 4: Login to Heroku cli`
-### `Step 5: git init`
-### `Step 6: heroku create`
-### `Step 7: git add.`
-### `Step 8: git commit -m "First node app deploy`
-### `Step 9: git push heroku master`
-### `Step 10: heroku open`
-
 ## Available Scripts
 
 In the project directory, you can run:
